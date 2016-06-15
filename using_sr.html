@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Introduction · SketchResponse</title>
+        <title>Using SketchResponse · SketchResponse</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="getting_started.html" />
+    <link rel="next" href="template.html" />
     
+    
+    <link rel="prev" href="getting_started.html" />
     
 
     </head>
@@ -87,7 +89,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -113,7 +115,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3" data-path="using_sr.html">
+        <li class="chapter active" data-level="1.3" data-path="using_sr.html">
             
                 <a href="using_sr.html">
             
@@ -317,7 +319,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >Using SketchResponse</a>
     </h1>
 </div>
 
@@ -332,29 +334,19 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="sketchresponse">SketchResponse</h1>
-<p>SketchResponse is a Javascript/Python(2.5-2.7) tool for drawing and evaluating
-mathematical functions. It was designed for use with the edX online
-courseware platform. However, it is a self-contained application that can be
-integrated into other web platforms.</p>
-<h2 id="motivation">Motivation</h2>
-<p>TODO Martin said he would write a paragraph.</p>
-<h2 id="features">Features</h2>
-<ul>
-<li>Sketch Tool - configurable Javascript front-end with plugin components to provide different
-function drawing and annotation capabilities. See
-<a href="docs/probconfig_plugins.md">Sketch-Tool Plugin Configuration</a> for a description of the available
-plugins.</li>
-<li>Grader Library - python back-end that provides an API of function grading methods that
-can be composed to construct custom grading scripts. See
-<a href="docs/simple_grader.md">Create a Simple Grading Script</a> for a tutorial on building
-a simple grading script.</li>
-</ul>
-<h2 id="read-more">Read More</h2>
-<ul>
-<li><a href="http://web.mit.edu/~jfrench/www/pdf/sketchinput_paper.pdf" _target="blank">Sketch Tool</a></li>
-<li><a href="http://web.mit.edu/~jfrench/www/pdf/sketch_results.pdf" _target="blank">Preliminary results using SketchResponse on edX</a></li>
-</ul>
+                                <h1 id="using-sketchresponse">Using SketchResponse</h1>
+<p>Using SketchResponse means writing python scripts to provide a configuration for the Sketch Tool front-end and an implementation of the grader method using the Grader Library back-end <a href="api/">API</a>. We call these <em>grading scripts</em>.</p>
+<h2 id="what-is-a-grading-script">What is a grading script</h2>
+<p>Before we get started writing scripts, we want to familiarize ourselves with the structure of a grading script. Read a description of the grading script template <a href="template.html">here</a></p>
+<h2 id="writing-our-first-grading-script">Writing our first grading script</h2>
+<p>Now that we know the pieces that must be implemented in the grading script, lets get started by implementing an extremely simple script. All this script will do is using the Grader Library to evalutate whether or not drawn function represents a straight line, or line segment. Click <a href="simple_grader.html">here</a> to follow this tutorial.</p>
+<h2 id="writing-a-more-complicated-script">Writing a more complicated script</h2>
+<p>Okay that was pretty easy, lets try building something a little more realistic. This grader script will be for a relatively simple polynomial function. Click <a href="complex_grader.html">here</a> to follow this tutorial.</p>
+<h2 id="testing-your-grading-scripts">Testing your grading scripts</h2>
+<p>As you probably saw at the end of each of our grading script examples, there was a brief description of testing that example script using a local server. More details on how to run that process can be found <a href="local_test.html">here</a>.</p>
+<h2 id="where-to-go-from-here">Where to go from here</h2>
+<p>As you might expect, there are a lot of different types of function sketches that can be grading using this tool, however the current grading library is focused on introductory calculus type problems. We are working to expand the scope of the functions that can be sketched and graded, but it is a work in progress.</p>
+<p>We have only demonstrated the use of a handful of the grading functions provided by the <a href="api/">Grader Library Application Programming Interface(API)</a>. Explore the API to see what other grading options are available.</p>
 
                                 
                                 </section>
@@ -382,8 +374,12 @@ a simple grading script.</li>
 
             
                 
+                <a href="getting_started.html" class="navigation navigation-prev " aria-label="Previous page: Getting Started">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="getting_started.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Getting Started">
+                
+                <a href="template.html" class="navigation navigation-next " aria-label="Next page: A grading script template">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -394,7 +390,7 @@ a simple grading script.</li>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Getting Started","level":"1.2","depth":1,"path":"getting_started.md","ref":"getting_started.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"README.md","mtime":"2016-06-14T17:20:49.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2016-06-14T21:37:18.268Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Using SketchResponse","level":"1.3","depth":1,"next":{"title":"A grading script template","level":"1.3.1","depth":2,"path":"template.md","ref":"template.md","articles":[]},"previous":{"title":"Getting Started","level":"1.2","depth":1,"path":"getting_started.md","ref":"getting_started.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"using_sr.md","mtime":"2016-06-14T21:36:44.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2016-06-14T21:37:18.268Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

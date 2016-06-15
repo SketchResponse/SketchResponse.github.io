@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Introduction · SketchResponse</title>
+        <title>Testing your script · SketchResponse</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="getting_started.html" />
+    <link rel="next" href="deployment.html" />
     
+    
+    <link rel="prev" href="complex_grader.html" />
     
 
     </head>
@@ -87,7 +89,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -166,7 +168,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.4" data-path="local_test.html">
+        <li class="chapter active" data-level="1.3.4" data-path="local_test.html">
             
                 <a href="local_test.html">
             
@@ -317,7 +319,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >Testing your script</a>
     </h1>
 </div>
 
@@ -332,29 +334,28 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="sketchresponse">SketchResponse</h1>
-<p>SketchResponse is a Javascript/Python(2.5-2.7) tool for drawing and evaluating
-mathematical functions. It was designed for use with the edX online
-courseware platform. However, it is a self-contained application that can be
-integrated into other web platforms.</p>
-<h2 id="motivation">Motivation</h2>
-<p>TODO Martin said he would write a paragraph.</p>
-<h2 id="features">Features</h2>
-<ul>
-<li>Sketch Tool - configurable Javascript front-end with plugin components to provide different
-function drawing and annotation capabilities. See
-<a href="docs/probconfig_plugins.md">Sketch-Tool Plugin Configuration</a> for a description of the available
-plugins.</li>
-<li>Grader Library - python back-end that provides an API of function grading methods that
-can be composed to construct custom grading scripts. See
-<a href="docs/simple_grader.md">Create a Simple Grading Script</a> for a tutorial on building
-a simple grading script.</li>
-</ul>
-<h2 id="read-more">Read More</h2>
-<ul>
-<li><a href="http://web.mit.edu/~jfrench/www/pdf/sketchinput_paper.pdf" _target="blank">Sketch Tool</a></li>
-<li><a href="http://web.mit.edu/~jfrench/www/pdf/sketch_results.pdf" _target="blank">Preliminary results using SketchResponse on edX</a></li>
-</ul>
+                                <h1 id="how-to-test-your-grading-scripts-locally">How To Test Your Grading Scripts Locally</h1>
+<p>The SketchResponse tool is designed to be used as a web application so when it is properly installed the Sketch Tool and Grader Lib will be hosted on a server somewhere. However, while you are designing and implementing a grading script for a particular problem, it is very convenient to be able to test it on a locally running version of the SketchResponse tool. This allows you to get immediate feedback on how well your grading script works without having to upload anything to your server.</p>
+<h2 id="flask">Flask</h2>
+<p>The local testing server is implemented using <a href="http://flask.pocoo.org/" _target="blank">Flask</a>. If you do not have flask you will need to install it, which is easily done by running the command:</p>
+<pre><code class="lang-sh">$ pip install -r requirements.txt
+</code></pre>
+<h2 id="running-the-server">Running the server</h2>
+<h3 id="building-the-sketch-tool-distribution">Building the sketch tool distribution</h3>
+<p>Before you can run the local server, you need to build a local copy of the sketch tool. If you
+have already done this and you have not modified the sketch tool in the interim you can skip
+this step. Otherwise, follow the instructions <a href="sketch_tool_usage.md#build">here</a> for details on building the sketch tool distribution.</p>
+<h3 id="start-the-grader-local-server">Start the grader local server</h3>
+<p>To run the local server, make sure the grading script you are testing is in the <code>grading_scripts</code> directory. Then run the following command from the repository root directory:</p>
+<pre><code class="lang-sh">$ python server.py
+</code></pre>
+<p>You should see a message telling you that the server is running on <code>http://localhost:5000</code>.</p>
+<h2 id="testing-your-script">Testing your script</h2>
+<p>Open your web browser of choice and put the following in the url bar, where <grader script="" name=""> is the filename of your grader script (leaving the .py extension off):</grader></p>
+<pre><code class="lang-sh">$ http://localhost:5000/&lt;grader script name&gt;
+</code></pre>
+<p>You will now see a locally running copy of the SketchResponse Sketch Tool using the configuration options you defined in your grading script. You can use it to draw test input for your grader script and press the &apos;Check&apos; button in the bottom left corner to run your grader on the functions you have drawn.</p>
+<p><img src="imgs/complex_grader.png" alt="Locally running Sketch Tool" title="Local Sketch Tool"></p>
 
                                 
                                 </section>
@@ -382,8 +383,12 @@ a simple grading script.</li>
 
             
                 
+                <a href="complex_grader.html" class="navigation navigation-prev " aria-label="Previous page: A complex grading script">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="getting_started.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Getting Started">
+                
+                <a href="deployment.html" class="navigation navigation-next " aria-label="Next page: Deployment">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -394,7 +399,7 @@ a simple grading script.</li>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Getting Started","level":"1.2","depth":1,"path":"getting_started.md","ref":"getting_started.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"README.md","mtime":"2016-06-14T17:20:49.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2016-06-14T21:37:18.268Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Testing your script","level":"1.3.4","depth":2,"next":{"title":"Deployment","level":"1.4","depth":1,"path":"deployment.md","ref":"deployment.md","articles":[{"title":"edX","level":"1.4.1","depth":2,"path":"edx_quickstart.md","ref":"edx_quickstart.md","articles":[]}]},"previous":{"title":"A complex grading script","level":"1.3.3","depth":2,"path":"complex_grader.md","ref":"complex_grader.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"local_test.md","mtime":"2016-05-27T19:47:21.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2016-06-14T21:37:18.268Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

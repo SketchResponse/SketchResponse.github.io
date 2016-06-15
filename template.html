@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Introduction · SketchResponse</title>
+        <title>A grading script template · SketchResponse</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="getting_started.html" />
+    <link rel="next" href="simple_grader.html" />
     
+    
+    <link rel="prev" href="using_sr.html" />
     
 
     </head>
@@ -87,7 +89,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -127,7 +129,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.1" data-path="template.html">
+        <li class="chapter active" data-level="1.3.1" data-path="template.html">
             
                 <a href="template.html">
             
@@ -317,7 +319,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >A grading script template</a>
     </h1>
 </div>
 
@@ -332,29 +334,38 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="sketchresponse">SketchResponse</h1>
-<p>SketchResponse is a Javascript/Python(2.5-2.7) tool for drawing and evaluating
-mathematical functions. It was designed for use with the edX online
-courseware platform. However, it is a self-contained application that can be
-integrated into other web platforms.</p>
-<h2 id="motivation">Motivation</h2>
-<p>TODO Martin said he would write a paragraph.</p>
-<h2 id="features">Features</h2>
-<ul>
-<li>Sketch Tool - configurable Javascript front-end with plugin components to provide different
-function drawing and annotation capabilities. See
-<a href="docs/probconfig_plugins.md">Sketch-Tool Plugin Configuration</a> for a description of the available
-plugins.</li>
-<li>Grader Library - python back-end that provides an API of function grading methods that
-can be composed to construct custom grading scripts. See
-<a href="docs/simple_grader.md">Create a Simple Grading Script</a> for a tutorial on building
-a simple grading script.</li>
-</ul>
-<h2 id="read-more">Read More</h2>
-<ul>
-<li><a href="http://web.mit.edu/~jfrench/www/pdf/sketchinput_paper.pdf" _target="blank">Sketch Tool</a></li>
-<li><a href="http://web.mit.edu/~jfrench/www/pdf/sketch_results.pdf" _target="blank">Preliminary results using SketchResponse on edX</a></li>
-</ul>
+                                <h1 id="grading-script-template">Grading script template</h1>
+<p>A grader script template can be see below. There are two components of the grader script:</p>
+<ol>
+<li>Sketch Tool configuration</li>
+<li>grader method implementation</li>
+</ol>
+<p>The details of each of these components are examined in greater detail in the <a href="simple_grader.html">simple</a> and complex(complex_grader.md) grading script examples. The template is provided here for reference.</p>
+<p>You can also find a copy in <em>/grader_scripts/grader_template.py</em>.</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> sketchinput
+<span class="hljs-keyword">from</span> draft_code <span class="hljs-keyword">import</span> GradeableFunction, Asymptote
+
+problemconfig = sketchinput.config({
+    <span class="hljs-string">&apos;width&apos;</span>: <span class="hljs-number">750</span>,  <span class="hljs-comment"># set the pixel width of the front-end interface</span>
+    <span class="hljs-string">&apos;height&apos;</span>: <span class="hljs-number">420</span>,  <span class="hljs-comment"># set the pixel height of the front-end interface</span>
+    <span class="hljs-string">&apos;xrange&apos;</span>: [<span class="hljs-number">-2.35</span>, <span class="hljs-number">2.35</span>],  <span class="hljs-comment"># set the x-axis displayed range</span>
+    <span class="hljs-string">&apos;yrange&apos;</span>: [<span class="hljs-number">-1.15</span>, <span class="hljs-number">1.15</span>],  <span class="hljs-comment"># set the y-axis displayed range</span>
+    <span class="hljs-string">&apos;xscale&apos;</span>: <span class="hljs-string">&apos;linear&apos;</span>,  <span class="hljs-comment"># only linear is currently implemented</span>
+    <span class="hljs-string">&apos;yscale&apos;</span>: <span class="hljs-string">&apos;linear&apos;</span>,
+    <span class="hljs-string">&apos;plugins&apos;</span>: [
+        <span class="hljs-comment"># all instances will use at minimum these two plugins</span>
+        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;axes&apos;</span>},
+        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;freeform&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;f&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Function f(x)&apos;</span>,
+         <span class="hljs-string">&apos;color&apos;</span>:<span class="hljs-string">&apos;blue&apos;</span>},
+    ]
+})
+
+
+<span class="hljs-meta">@sketchinput.grader</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">grader</span><span class="hljs-params">(f)</span>:</span>  <span class="hljs-comment"># arguments is a list of the &apos;id&apos; values for each plugin</span>
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">True</span>, <span class="hljs-string">&apos;Good Job&apos;</span>
+</code></pre>
 
                                 
                                 </section>
@@ -382,8 +393,12 @@ a simple grading script.</li>
 
             
                 
+                <a href="using_sr.html" class="navigation navigation-prev " aria-label="Previous page: Using SketchResponse">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="getting_started.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Getting Started">
+                
+                <a href="simple_grader.html" class="navigation navigation-next " aria-label="Next page: A simple grading script">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -394,7 +409,7 @@ a simple grading script.</li>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Getting Started","level":"1.2","depth":1,"path":"getting_started.md","ref":"getting_started.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"README.md","mtime":"2016-06-14T17:20:49.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2016-06-14T21:37:18.268Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"A grading script template","level":"1.3.1","depth":2,"next":{"title":"A simple grading script","level":"1.3.2","depth":2,"path":"simple_grader.md","ref":"simple_grader.md","articles":[]},"previous":{"title":"Using SketchResponse","level":"1.3","depth":1,"path":"using_sr.md","ref":"using_sr.md","articles":[{"title":"A grading script template","level":"1.3.1","depth":2,"path":"template.md","ref":"template.md","articles":[]},{"title":"A simple grading script","level":"1.3.2","depth":2,"path":"simple_grader.md","ref":"simple_grader.md","articles":[]},{"title":"A complex grading script","level":"1.3.3","depth":2,"path":"complex_grader.md","ref":"complex_grader.md","articles":[]},{"title":"Testing your script","level":"1.3.4","depth":2,"path":"local_test.md","ref":"local_test.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"template.md","mtime":"2016-06-14T20:24:26.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2016-06-14T21:37:18.268Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Introduction · SketchResponse</title>
+        <title>Getting Started · SketchResponse</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="getting_started.html" />
+    <link rel="next" href="using_sr.html" />
     
+    
+    <link rel="prev" href="./" />
     
 
     </head>
@@ -87,7 +89,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -100,7 +102,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="getting_started.html">
+        <li class="chapter active" data-level="1.2" data-path="getting_started.html">
             
                 <a href="getting_started.html">
             
@@ -317,7 +319,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >Getting Started</a>
     </h1>
 </div>
 
@@ -332,29 +334,63 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="sketchresponse">SketchResponse</h1>
-<p>SketchResponse is a Javascript/Python(2.5-2.7) tool for drawing and evaluating
-mathematical functions. It was designed for use with the edX online
-courseware platform. However, it is a self-contained application that can be
-integrated into other web platforms.</p>
-<h2 id="motivation">Motivation</h2>
-<p>TODO Martin said he would write a paragraph.</p>
-<h2 id="features">Features</h2>
+                                <h1 id="getting-started-from-zero">Getting started from zero</h1>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>To work with the SketchResponse codebase, there are two major technology prerequisites that you will need installed on your machine.</p>
 <ul>
-<li>Sketch Tool - configurable Javascript front-end with plugin components to provide different
-function drawing and annotation capabilities. See
-<a href="docs/probconfig_plugins.md">Sketch-Tool Plugin Configuration</a> for a description of the available
-plugins.</li>
-<li>Grader Library - python back-end that provides an API of function grading methods that
-can be composed to construct custom grading scripts. See
-<a href="docs/simple_grader.md">Create a Simple Grading Script</a> for a tutorial on building
-a simple grading script.</li>
+<li><p>The Sketch Tool front-end is built using <a href="http://nodejs.org" _target="blank">Node.js</a> and npm (which is now packaged with Node). You will need to have both of these installed on your computer.</p>
+</li>
+<li><p>The Grader Library back-end is built using <a href="https://www.python.org/" _target="blank">Python</a> and relies on a couple python packages that you will need to install. We recommend you use the <a href="https://pypi.python.org/pypi/pip" _target="blank">pip</a> python package installer. If you are using an up-to-date python installation you probably already have it <a href="https://pip.pypa.io/en/stable/installing/" _target="blank">installed</a>. If you already have another python package manager, we only use commonly available packages so it should not be a problem.</p>
+</li>
+<li><p>You will also need to be comfortable using the command-line to execute commands.</p>
+</li>
 </ul>
-<h2 id="read-more">Read More</h2>
+<p>If you have statisfied all of the above prerequisites, then we can start working on the codebase.</p>
+<h2 id="getting-the-codebase">Getting the codebase</h2>
 <ul>
-<li><a href="http://web.mit.edu/~jfrench/www/pdf/sketchinput_paper.pdf" _target="blank">Sketch Tool</a></li>
-<li><a href="http://web.mit.edu/~jfrench/www/pdf/sketch_results.pdf" _target="blank">Preliminary results using SketchResponse on edX</a></li>
+<li><p>Clone this repository to the directory of your choice:</p>
+<ul>
+<li><p>By using HTTPS:</p>
+<pre><code class="lang-sh">$ git <span class="hljs-built_in">clone</span> https://github.com/SketchResponse/sketchresponse.git
+</code></pre>
+</li>
+<li><p>By using SSH:</p>
+<pre><code class="lang-sh">$ git <span class="hljs-built_in">clone</span> git@github.com:SketchResponse/sketchresponse.git
+</code></pre>
+</li>
 </ul>
+</li>
+</ul>
+<h2 id="building-the-sketch-tool-front-end">Building the Sketch Tool front-end</h2>
+<ul>
+<li><p>Change to the <em>sketch_tool</em> directory:</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">cd</span> sketch_tool
+</code></pre>
+</li>
+<li><p>Install dependencies listed in <em>package.json</em> using <code>npm</code>:</p>
+<pre><code class="lang-sh">$ npm install
+</code></pre>
+<p><a href="http://jspm.io" _target="blank">JSPM</a> will pull in additional dependencies automatically on a post-install script.</p>
+</li>
+<li><p>Build a distribution of the Sketch Tool. The distribution directory will be found in the <code>/static/sketch_tool_dist/</code> directory.</p>
+<pre><code class="lang-sh">$ npm run build
+</code></pre>
+</li>
+</ul>
+<p>Now you have a built distribution of the Sketch Tool front-end, we will use it later to let us test grading scripts. The front-end distribution is also what you will need to have hosted on a public server when deploying SketchResponse for your application.</p>
+<h2 id="grader-library-back-end-dependencies">Grader Library back-end dependencies</h2>
+<p>The SketchResponse grader library back-end has only two third party package requirements, which are listed in the requirements.txt file.</p>
+<ul>
+<li><a href="http://flask.pocoo.org/" _target="blank">flask</a></li>
+<li><a href="http://www.numpy.org/" _target="blank">numpy</a></li>
+</ul>
+<p>You will need to be in the root directory of the codebase, then you can install them by running the following command:</p>
+<pre><code class="lang-sh">$ pip install -r requirements.txt
+</code></pre>
+<p>Numpy is used to support the mathematical computations of the grader library.</p>
+<p>Flask is required to run a local server for convenience when implementing and testing new grading scripts. This lets you test your scripts without having to deploy them to another server, giving you more immediate feedback and simplifying the debugging process. See the Tutorial <a href="docs/local_test.md">Test a Grading Script on a Local Server</a> for details.</p>
+<h1 id="whats-next">What&apos;s next</h1>
+<p>Now that you have the codebase installed and ready to use, lets start looking at how to configure the Sketch Tool and implement a couple grading scripts. Click <a href="using_sr.html">here</a>.</p>
 
                                 
                                 </section>
@@ -382,8 +418,12 @@ a simple grading script.</li>
 
             
                 
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="getting_started.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Getting Started">
+                
+                <a href="using_sr.html" class="navigation navigation-next " aria-label="Next page: Using SketchResponse">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -394,7 +434,7 @@ a simple grading script.</li>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Getting Started","level":"1.2","depth":1,"path":"getting_started.md","ref":"getting_started.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"README.md","mtime":"2016-06-14T17:20:49.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2016-06-14T21:37:18.268Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Getting Started","level":"1.2","depth":1,"next":{"title":"Using SketchResponse","level":"1.3","depth":1,"path":"using_sr.md","ref":"using_sr.md","articles":[{"title":"A grading script template","level":"1.3.1","depth":2,"path":"template.md","ref":"template.md","articles":[]},{"title":"A simple grading script","level":"1.3.2","depth":2,"path":"simple_grader.md","ref":"simple_grader.md","articles":[]},{"title":"A complex grading script","level":"1.3.3","depth":2,"path":"complex_grader.md","ref":"complex_grader.md","articles":[]},{"title":"Testing your script","level":"1.3.4","depth":2,"path":"local_test.md","ref":"local_test.md","articles":[]}]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"getting_started.md","mtime":"2016-06-14T17:24:48.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2016-06-14T21:37:18.268Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

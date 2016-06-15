@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Introduction · SketchResponse</title>
+        <title>Deployment · SketchResponse</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="getting_started.html" />
+    <link rel="next" href="edx_quickstart.html" />
     
+    
+    <link rel="prev" href="local_test.html" />
     
 
     </head>
@@ -87,7 +89,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -184,7 +186,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4" data-path="deployment.html">
+        <li class="chapter active" data-level="1.4" data-path="deployment.html">
             
                 <a href="deployment.html">
             
@@ -317,7 +319,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >Deployment</a>
     </h1>
 </div>
 
@@ -332,28 +334,11 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="sketchresponse">SketchResponse</h1>
-<p>SketchResponse is a Javascript/Python(2.5-2.7) tool for drawing and evaluating
-mathematical functions. It was designed for use with the edX online
-courseware platform. However, it is a self-contained application that can be
-integrated into other web platforms.</p>
-<h2 id="motivation">Motivation</h2>
-<p>TODO Martin said he would write a paragraph.</p>
-<h2 id="features">Features</h2>
+                                <h1 id="deploying-sketchresponse">Deploying SketchResponse</h1>
+<p>SketchResponse was designed to be a stand-alone application that should be relatively easy to integrate into whatever application you have. The details of deploying to custom applications are unfortunately beyond the scope of this documentation. Needless to say, you will need to provide hosting for the Sketch Tool front-end distribution, the python Grader Library back-end, and a small amount of static html to tie it all together (see the <em>/static/</em> directory and <em>/templates/index_sketch_tool.html</em> in the codebase for a simple example of this).</p>
+<p>However, as SketchResponse was designed with the intention of using it to develop online courses for mitX and edX, there is a quickstart guide to deploying your SketchResponse problems to edX below.</p>
 <ul>
-<li>Sketch Tool - configurable Javascript front-end with plugin components to provide different
-function drawing and annotation capabilities. See
-<a href="docs/probconfig_plugins.md">Sketch-Tool Plugin Configuration</a> for a description of the available
-plugins.</li>
-<li>Grader Library - python back-end that provides an API of function grading methods that
-can be composed to construct custom grading scripts. See
-<a href="docs/simple_grader.md">Create a Simple Grading Script</a> for a tutorial on building
-a simple grading script.</li>
-</ul>
-<h2 id="read-more">Read More</h2>
-<ul>
-<li><a href="http://web.mit.edu/~jfrench/www/pdf/sketchinput_paper.pdf" _target="blank">Sketch Tool</a></li>
-<li><a href="http://web.mit.edu/~jfrench/www/pdf/sketch_results.pdf" _target="blank">Preliminary results using SketchResponse on edX</a></li>
+<li><a href="edx_quickstart.html">Deploying to edX</a></li>
 </ul>
 
                                 
@@ -382,8 +367,12 @@ a simple grading script.</li>
 
             
                 
+                <a href="local_test.html" class="navigation navigation-prev " aria-label="Previous page: Testing your script">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="getting_started.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Getting Started">
+                
+                <a href="edx_quickstart.html" class="navigation navigation-next " aria-label="Next page: edX">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -394,7 +383,7 @@ a simple grading script.</li>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Getting Started","level":"1.2","depth":1,"path":"getting_started.md","ref":"getting_started.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"README.md","mtime":"2016-06-14T17:20:49.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2016-06-14T21:37:18.268Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Deployment","level":"1.4","depth":1,"next":{"title":"edX","level":"1.4.1","depth":2,"path":"edx_quickstart.md","ref":"edx_quickstart.md","articles":[]},"previous":{"title":"Testing your script","level":"1.3.4","depth":2,"path":"local_test.md","ref":"local_test.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"deployment.md","mtime":"2016-06-14T20:05:25.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2016-06-14T21:37:18.268Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
