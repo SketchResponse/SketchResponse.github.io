@@ -385,7 +385,7 @@ configuration options.</p>
 
     msg=<span class="hljs-string">&apos;&apos;</span>
 </code></pre>
-<p>The first thing that the grader function needs to do is format the input data so that <a href="https://SketchResponse.github.io/sketchresponse" _target="blank">Grader API</a> methods of interest can be used to check specific features of the input data.</p>
+<p>The first thing that the grader function needs to do is format the input data so that <a href="https://SketchResponse.github.io/sketchresponse" _target="blank">Grader Library API</a> methods of interest can be used to check specific features of the input data.</p>
 <p>As explained in the <a href="simple_grader.html">Simple Grader Tutorial</a> the data is passed to the grader function as a dictionary with keys equal to the &apos;id&apos; values used in the pluginconfig above so the dictionary can be directly unpacked into argument variables with the same names.</p>
 <p>The &apos;freeform&apos; and &apos;point&apos; data are evaluated with API methods in the <code>GradeableFunction.GradeableFunction</code> class. The &apos;vertical-line&apos; and &apos;horizontal-line&apos; data are evaluted with API methods in the <code>Asymptote.VerticalAsymptote</code> and &apos;Asymptote.HorizontalAsymptote` classes respectively.</p>
 <p>The <code>msg</code> variable will be used when evaluating specific checks on the data to supply check specific feedback to the student if errors are found.</p>
@@ -557,7 +557,7 @@ problemconfig = sketchresponse.config({
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>, msg
 </code></pre>
 <h2 id="testing-the-script">Testing the script</h2>
-<p>Once the script is written, you can run the script in the local testing server. See the <a href="docs/local_test.md">Test a Grading Script on a Local Server</a> tutorial for details on installing and running the testing server.</p>
+<p>Once the script is written, you can run the script in the local testing server. See the <a href="local_test.html">Test a Grading Script on a Local Server</a> tutorial for details on installing and running the testing server.</p>
 <p>There is already a copy of this grader script in the <code>grader_scripts</code> directory so all you need to do is start the server and point your browser of choice to the url:</p>
 <pre><code>http://localhost:5000/complex_grader
 </code></pre><p>You should see the configured Sketch Tool. If you sketch the function shown at the beginning of this tutorial, you should see an accept message. Any other sketches should return a reject message.</p>
@@ -604,7 +604,7 @@ problemconfig = sketchresponse.config({
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"A complex grading script","level":"1.3.3","depth":2,"next":{"title":"Testing your script","level":"1.3.4","depth":2,"path":"local_test.md","ref":"local_test.md","articles":[]},"previous":{"title":"A simple grading script","level":"1.3.2","depth":2,"path":"simple_grader.md","ref":"simple_grader.md","articles":[]},"dir":"ltr"},"config":{"plugins":["livereload"],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"complex_grader.md","mtime":"2016-06-15T22:41:32.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2016-06-22T20:03:54.339Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"A complex grading script","level":"1.3.3","depth":2,"next":{"title":"Testing your script","level":"1.3.4","depth":2,"path":"local_test.md","ref":"local_test.md","articles":[]},"previous":{"title":"A simple grading script","level":"1.3.2","depth":2,"path":"simple_grader.md","ref":"simple_grader.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"complex_grader.md","mtime":"2016-06-23T20:48:29.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2016-06-23T20:58:31.942Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -612,10 +612,6 @@ problemconfig = sketchresponse.config({
         
     <script src="gitbook/gitbook.js"></script>
     <script src="gitbook/theme.js"></script>
-    
-        
-        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
-        
     
         
         <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
