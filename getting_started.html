@@ -317,7 +317,7 @@
 <ul>
 <li>You will also need to be comfortable using the command-line to execute commands.</li>
 </ul>
-<p><strong>Note for Windows Users:</strong> You should use the Git Bash shell to execute all commands in this document. You will need to run it as Administrator to execute the <em>npm</em> and <em>pip</em> installation commands below. To do this, right-click Git Bash from the Start Menu and select Run as Administrator.</p>
+<p><strong>Note for Windows Users:</strong> You should use the Git Bash shell to execute all commands in this document. You will need to run it as Administrator to execute the <em>npm</em> and <em>pip</em> installation commands below. You may also need to run the Git Bash shell as Administrator to run the local flask testing server. To do this, right-click Git Bash from the Start Menu and select Run as Administrator.</p>
 <p>If you have statisfied all of the above prerequisites, then we can start working on the codebase.</p>
 <h2 id="getting-the-codebase">Getting the codebase</h2>
 <ul>
@@ -337,7 +337,7 @@
 <p>Running either of the above commands will create a new directory called SketchResponse. This SketchResponse directory is your copy of the repository. The rest of this document will refer to it as the <em>repo</em> directory.</p>
 <ul>
 <li><p>Run this command to change directories to the <em>repo</em> of the SketchResponse repository.</p>
-<pre><code class="lang-sh">$ <span class="hljs-built_in">cd</span> SketchResponse
+<pre><code class="lang-sh">$ <span class="hljs-built_in">cd</span> sketchresponse
 </code></pre>
 </li>
 </ul>
@@ -347,7 +347,7 @@
 <pre><code class="lang-sh">$ <span class="hljs-built_in">cd</span> sketch_tool
 </code></pre>
 </li>
-<li><p>Install dependencies listed in <em>package.json</em> using <code>npm</code>:</p>
+<li><p>Install dependencies listed in <em>package.json</em> using <code>npm</code>. <em>If you are in Windows make sure you are running the Git Bash shell as Administrator</em>:</p>
 <pre><code class="lang-sh">$ npm install
 </code></pre>
 <p><a href="http://jspm.io" _target="blank">JSPM</a> will pull in additional dependencies automatically on a post-install script.</p>
@@ -367,7 +367,7 @@
 <p>You will need to be in the <em>repo</em> directory of the codebase. If you are still in the sketch_tool directory, run the following command to change back to the <em>repo</em> directory.</p>
 <pre><code class="lang-sh">$ <span class="hljs-built_in">cd</span> ..
 </code></pre>
-<p>Now that you are in the <em>repo</em> directory, you can run the following command to install the required python packages.</p>
+<p>Now that you are in the <em>repo</em> directory, you can run the following command to install the required python packages. <em>If you are in Windows make sure you are running the Git Bash shell as Administrator</em></p>
 <pre><code class="lang-sh">$ pip install -r requirements.txt
 </code></pre>
 <p>Numpy is used to support the mathematical computations of the grader library.</p>
@@ -417,7 +417,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Getting Started","level":"1.2","depth":1,"next":{"title":"Using SketchResponse","level":"1.3","depth":1,"path":"using_sr.md","ref":"using_sr.md","articles":[{"title":"A grading script template","level":"1.3.1","depth":2,"path":"template.md","ref":"template.md","articles":[]},{"title":"A simple grading script","level":"1.3.2","depth":2,"path":"simple_grader.md","ref":"simple_grader.md","articles":[]},{"title":"A complex grading script","level":"1.3.3","depth":2,"path":"complex_grader.md","ref":"complex_grader.md","articles":[]},{"title":"Testing your script","level":"1.3.4","depth":2,"path":"local_test.md","ref":"local_test.md","articles":[]}]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"getting_started.md","mtime":"2016-06-24T22:27:02.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2016-06-29T19:21:31.578Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Getting Started","level":"1.2","depth":1,"next":{"title":"Using SketchResponse","level":"1.3","depth":1,"path":"using_sr.md","ref":"using_sr.md","articles":[{"title":"A grading script template","level":"1.3.1","depth":2,"path":"template.md","ref":"template.md","articles":[]},{"title":"A simple grading script","level":"1.3.2","depth":2,"path":"simple_grader.md","ref":"simple_grader.md","articles":[]},{"title":"A complex grading script","level":"1.3.3","depth":2,"path":"complex_grader.md","ref":"complex_grader.md","articles":[]},{"title":"Testing your script","level":"1.3.4","depth":2,"path":"local_test.md","ref":"local_test.md","articles":[]}]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["livereload"],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"getting_started.md","mtime":"2016-07-19T17:19:26.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2016-07-19T17:23:54.631Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -425,6 +425,10 @@
         
     <script src="gitbook/gitbook.js"></script>
     <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
     
         
         <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>

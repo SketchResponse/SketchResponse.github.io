@@ -305,7 +305,7 @@
                                 <h1 id="how-to-test-your-grading-scripts-locally">How To Test Your Grading Scripts Locally</h1>
 <p>The SketchResponse tool is designed to be used as a web application so when it is properly installed the Sketch Tool and Grader Lib will be hosted on a server somewhere. However, while you are designing and implementing a grading script for a particular problem, it is very convenient to be able to test it on a locally running version of the SketchResponse tool. This allows you to get immediate feedback on how well your grading script works without having to upload anything to your server.</p>
 <h2 id="flask">Flask</h2>
-<p>The local testing server is implemented using <a href="http://flask.pocoo.org/" _target="blank">Flask</a>. If you do not have flask you will need to install it, which is easily done by running the command:</p>
+<p>The local testing server is implemented using <a href="http://flask.pocoo.org/" _target="blank">Flask</a>. If you do not have flask you will need to install it, which is easily done by running the command. <em>If you are in Windows make sure you are running the Git Bash shell as Administrator.</em></p>
 <pre><code class="lang-sh">$ pip install -r requirements.txt
 </code></pre>
 <h2 id="running-the-server">Running the server</h2>
@@ -314,7 +314,7 @@
 have already done this and you have not modified the sketch tool in the interim you can skip
 this step. Otherwise, follow the instructions <a href="sketch_tool_usage.md#build">here</a> for details on building the sketch tool distribution.</p>
 <h3 id="start-the-grader-local-server">Start the grader local server</h3>
-<p>To run the local server, make sure the grading script you are testing is in the <code>grading_scripts</code> directory. Then run the following command from the repository root directory:</p>
+<p>To run the local server, make sure the grading script you are testing is in the <code>grading_scripts</code> directory. Then run the following command from the repository root directory. <em>If you are in Windows you may need to run the Git Bash shell as Administrator to interact with the local server.</em></p>
 <pre><code class="lang-sh">$ python server.py
 </code></pre>
 <p>You should see a message telling you that the server is running on <code>http://localhost:5000</code>.</p>
@@ -367,7 +367,7 @@ this step. Otherwise, follow the instructions <a href="sketch_tool_usage.md#buil
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Testing your script","level":"1.3.4","depth":2,"next":{"title":"Deployment","level":"1.4","depth":1,"path":"deployment.md","ref":"deployment.md","articles":[{"title":"edX","level":"1.4.1","depth":2,"path":"edx_quickstart.md","ref":"edx_quickstart.md","articles":[]}]},"previous":{"title":"A complex grading script","level":"1.3.3","depth":2,"path":"complex_grader.md","ref":"complex_grader.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"local_test.md","mtime":"2016-06-15T22:35:44.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2016-06-29T19:21:31.578Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Testing your script","level":"1.3.4","depth":2,"next":{"title":"Deployment","level":"1.4","depth":1,"path":"deployment.md","ref":"deployment.md","articles":[{"title":"edX","level":"1.4.1","depth":2,"path":"edx_quickstart.md","ref":"edx_quickstart.md","articles":[]}]},"previous":{"title":"A complex grading script","level":"1.3.3","depth":2,"path":"complex_grader.md","ref":"complex_grader.md","articles":[]},"dir":"ltr"},"config":{"plugins":["livereload"],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"local_test.md","mtime":"2016-07-19T17:22:36.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2016-07-19T17:23:54.631Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -375,6 +375,10 @@ this step. Otherwise, follow the instructions <a href="sketch_tool_usage.md#buil
         
     <script src="gitbook/gitbook.js"></script>
     <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
     
         
         <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
