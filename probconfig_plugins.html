@@ -316,22 +316,34 @@ is used.</p>
 <li><a href="#background">Background</a></li>
 <li><a href="#freeform">Freeform</a></li>
 <li><a href="#point">Point</a></li>
+<li><a href="#line-segment">Line Segment</a></li>
 <li><a href="#vert-line">Vertical Asymptote</a></li>
 <li><a href="#horiz-line">Horizontal Asymptote</a></li>
 <li><a href="#image">Image</a></li>
 </ul>
 <p><div id="axes"></div></p>
 <h2 id="axes">Axes</h2>
-<p>Adds horizontal and vertical axes with major and minor ticks and their associated gridlines.</p>
+<p>Adds horizontal and vertical axes, and a grid system. It has one parameter that must be defined:</p>
 <ul>
-<li><code>&apos;name&apos;: &apos;axes&apos;</code> - the name key <em>must</em> have the value &apos;axes&apos;</li>
-<li><code>&apos;xmajor&apos;: &lt;number&gt;(default: 1)</code> - the major tick spacing for the x axis</li>
-<li><code>&apos;ymajor&apos;: &lt;number&gt;(default: 1)</code> - the major tick spacing for the y axis</li>
-<li><code>&apos;xminor&apos;: &lt;number&gt;(default: 0.25)</code> - the minor tick spacing for the x axis</li>
-<li><code>&apos;yminor&apos;: &lt;number&gt;(default: 0.25)</code> - the minor tick spacing for the y axis</li>
+<li><code>&apos;name&apos;: &apos;axes&apos;</code> - the name key <em>must</em> have the value &apos;axes&apos;.</li>
+</ul>
+<p>It also has optional parameters that depend on the &apos;coordinates&apos; option defined one level up:</p>
+<p>If &apos;cartesian&apos; is chosen, the following parameters will take effect:</p>
+<ul>
+<li><code>&apos;xmajor&apos;: &lt;number&gt;(default: none)</code> - the major tick spacing for the x axis</li>
+<li><code>&apos;ymajor&apos;: &lt;number&gt;(default: none)</code> - the major tick spacing for the y axis</li>
+<li><code>&apos;xminor&apos;: &lt;number&gt;(default: none)</code> - the minor tick spacing for the x axis</li>
+<li><code>&apos;yminor&apos;: &lt;number&gt;(default: none)</code> - the minor tick spacing for the y axis</li>
+</ul>
+<p>Note: if some (or all) of the above are missing, an automatic, best-fitting value will be generated as a default.</p>
+<p>If &apos;polar&apos; is chosen, the following parameters will take effect:</p>
+<ul>
+<li><code>&apos;rrange&apos;: &lt;number&gt;(default: 10)</code> - the distance between the origin and the outer circle</li>
+<li><code>&apos;rmajor&apos;: &lt;number&gt;(default: 1)</code> - the distance between the circles of the polar grid</li>
+<li><code>&apos;thetamajor&apos;: &lt;number&gt;(default: 30)</code> - the angle (in degrees) between the rays of the polar grid</li>
 </ul>
 <p>E.g.</p>
-<pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;axes&apos;</span>}
+<pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;axes&apos;</span>, <span class="hljs-string">&apos;rrange&apos;</span>: <span class="hljs-string">&apos;20&apos;</span>, <span class="hljs-string">&apos;rmajor&apos;</span>: <span class="hljs-string">&apos;5&apos;</span>, thetamajor: <span class="hljs-string">&apos;10&apos;</span>}
 </code></pre>
 <p><div id="background"></div></p>
 <h2 id="background">Background</h2>
@@ -378,8 +390,58 @@ javascript recognizes. A listing of color names can be found <a href="http://www
 <li><code>&apos;size&apos;: &lt;int&gt;</code> - the size key must be given an integer value. It sets the
 pixel diameter of the point drawn by the plugin.</li>
 </ul>
+<p>It also has an optional parameter:</p>
+<ul>
+<li><code>&apos;hollow&apos;: &lt;boolean&gt;</code> - if set to true, the point will be drawn hollow. Default value: false.</li>
+</ul>
 <p>E.g.</p>
-<pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;point&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;cp&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Extremum&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;black&apos;</span>, <span class="hljs-string">&apos;size&apos;</span>: <span class="hljs-number">15</span>}
+<pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;point&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;cp&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Extremum&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;black&apos;</span>, <span class="hljs-string">&apos;size&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;hollow&apos;</span>: <span class="hljs-keyword">True</span>}
+</code></pre>
+<p><div id="line-segment"></div></p>
+<h2 id="line-segment">Line Segment</h2>
+<p>The Line Segment plugin adds a button to the tool to draw line segments on the axes. Optionally these can have a customizable arrow head and can be constrained in their direction (horizontally or vertically) and their length.
+The plugin behaves as follows:</p>
+<ul>
+<li><p>Pointer press and then drag will create a dynamic line segment from initial press location to current drag location. On drag release, the line segment will be drawn from initial press to drag release.</p>
+</li>
+<li><p>Pointer click will create a point. Two behaviors are then possible:</p>
+<ul>
+<li><p>A subsequent pointer click will create a line segment from first pointer click to second pointer click.</p>
+</li>
+<li><p>A subsequent pointer press and drag will create a dynamic line segment from initial click location to current drag location. On drag release, the line segment will be drawn from initial click to drag release.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>It has five parameters that must be defined:</p>
+<ul>
+<li><code>&apos;name&apos;: &apos;line-segment&apos;</code> - the name key <em>must</em> have the value &apos;line-segment&apos;.</li>
+<li><code>&apos;id&apos;: &lt;unique identifier string&gt;</code> - the id key <em>must</em> have a <em>unique</em> value.
+This value is used as the key for the data created by this plugin in the JSON
+string returned to the grader function.</li>
+<li><code>&apos;label&apos;: &lt;descriptive string&gt;</code> - the label key should be given a descriptive string. This string will be used to label the selection button in the javascript
+front-end tool.</li>
+<li><code>&apos;color&apos;: &lt;a color string&gt;</code> - the color key should be give a color string that
+javascript recognizes. A listing of color names can be found <a href="http://www.w3schools.com/colors/colors_names.asp" _target="blank">here</a>.</li>
+<li><code>&apos;dashStyle&apos;: &lt;line dash string&gt;(default: &apos;solid&apos;)</code> - the dashStyle key should have a string
+description of the dash style to used for drawing the line. Possible values: &apos;dashed&apos;, &apos;longdashed&apos;, &apos;dotted&apos;, &apos;dashdotted&apos;, &apos;solid&apos;.</li>
+</ul>
+<p>It also has optional parameters:</p>
+<ul>
+<li><p><code>&apos;directionConstraint&apos;: &lt;a constraint string&gt;</code> - the directionConstraint key should be a string describing the constraint. Possible values: &apos;horizontal&apos;, &apos;vertical&apos;.</p>
+</li>
+<li><p><code>&apos;lengthConstraint&apos;: &lt;int&gt;</code> - the lengthConstraint key must be given an integer value. It sets the
+maximum pixel length of the line segment drawn by the plugin.</p>
+</li>
+<li><p><code>&apos;arrowHead&apos;: &lt;object&gt;</code> - the arrowHead key must be an object containing the following keys:</p>
+<ul>
+<li><code>&apos;length&apos;: &lt;int&gt;</code> - the length key must be given an integer value. It sets the length of the arrow head of the line segment drawn by the plugin.</li>
+<li><code>&apos;base&apos;: &lt;int&gt;</code> - the base key must be given an integer value. It sets the base width of the arrow head of the line segment drawn by the plugin.</li>
+</ul>
+</li>
+</ul>
+<p>E.g.</p>
+<pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;line-segment&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;ls&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Line segment&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;gray&apos;</span>, <span class="hljs-string">&apos;dashStyle&apos;</span>: <span class="hljs-string">&apos;solid&apos;</span>, <span class="hljs-string">&apos;directionConstraint&apos;</span>: <span class="hljs-string">&apos;horizontal&apos;</span>, <span class="hljs-string">&apos;lengthContraint&apos;</span>: <span class="hljs-number">50</span>, <span class="hljs-string">&apos;arrowHead&apos;</span>: {<span class="hljs-string">&apos;length&apos;</span>: <span class="hljs-number">10</span>, <span class="hljs-string">&apos;base&apos;</span>: <span class="hljs-number">7</span>}
 </code></pre>
 <p><div id="vert-line"></div></p>
 <h2 id="vertical-asymptote">Vertical Asymptote</h2>
@@ -397,6 +459,7 @@ javascript recognizes. A listing of color names can be found <a href="http://www
 <li><code>&apos;dashStyle&apos;: &lt;line dash string&gt;(default: &apos;solid&apos;)</code> - the dashStyle key should have a string
 description of the dash style to used for drawing the line. Possible values: &apos;dashed&apos;, &apos;longdashed&apos;, &apos;dotted&apos;, &apos;dashdotted&apos;, &apos;solid&apos;.</li>
 </ul>
+<p>E.g.</p>
 <pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;vertical-line&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;va&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Vertical asymptote&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;gray&apos;</span>, <span class="hljs-string">&apos;dashStyle&apos;</span>: <span class="hljs-string">&apos;dashdotted&apos;</span>}
 </code></pre>
 <p><div id="horiz-line"></div></p>
@@ -416,6 +479,7 @@ javascript recognizes. A listing of color names can be found <a href="http://www
 <li><code>&apos;dashStyle&apos;: &lt;line dash string&gt;(default: &apos;solid&apos;)</code> - the dashStyle key should have a string
 description of the dash style to used for drawing the line. Possible values: &apos;dashed&apos;, &apos;longdashed&apos;, &apos;dotted&apos;, &apos;dashdotted&apos;, &apos;solid&apos;.</li>
 </ul>
+<p>E.g.</p>
 <pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;horizontal-line&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;ha&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Horizontal asymptote&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;gray&apos;</span>, <span class="hljs-string">&apos;dashStyle&apos;</span>: <span class="hljs-string">&apos;dashdotted&apos;</span>}
 </code></pre>
 <p><div id="image"></div></p>
@@ -428,6 +492,7 @@ description of the dash style to used for drawing the line. Possible values: &ap
 <li><code>&apos;offset&apos;: [&lt;number&gt;,&lt;number&gt;]</code> - array of x, y offsets (default value[0, 0]).</li>
 <li><code>&apos;src&apos;: &lt;path to image file&gt;</code> - the path to the image file to insert.</li>
 </ul>
+<p>E.g.</p>
 <pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;image&apos;</span>, <span class="hljs-string">&apos;align&apos;</span>: <span class="hljs-string">&apos;bottom&apos;</span>, <span class="hljs-string">&apos;src&apos;</span>: <span class="hljs-string">&apos;/static/image.png&apos;</span>}
 </code></pre>
 
@@ -473,7 +538,7 @@ description of the dash style to used for drawing the line. Possible values: &ap
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Sketch Tool Configuration Reference","level":"1.5","depth":1,"next":{"title":"Grader Library API Reference","level":"1.6","depth":1,"path":"api/README.md","ref":"api/README.md","articles":[]},"previous":{"title":"edX","level":"1.4.1","depth":2,"path":"edx_quickstart.md","ref":"edx_quickstart.md","articles":[]},"dir":"ltr"},"config":{"plugins":["livereload"],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"probconfig_plugins.md","mtime":"2016-06-29T19:20:12.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2016-07-19T17:23:54.631Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Sketch Tool Configuration Reference","level":"1.5","depth":1,"next":{"title":"Grader Library API Reference","level":"1.6","depth":1,"path":"api/README.md","ref":"api/README.md","articles":[]},"previous":{"title":"edX","level":"1.4.1","depth":2,"path":"edx_quickstart.md","ref":"edx_quickstart.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"probconfig_plugins.md","mtime":"2016-11-06T19:54:44.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2016-11-06T19:58:29.622Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -481,10 +546,6 @@ description of the dash style to used for drawing the line. Possible values: &ap
         
     <script src="gitbook/gitbook.js"></script>
     <script src="gitbook/theme.js"></script>
-    
-        
-        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
-        
     
         
         <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
