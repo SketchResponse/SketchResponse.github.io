@@ -1,0 +1,713 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>A physics grading script · SketchResponse</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.1.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="local_test.html" />
+    
+    
+    <link rel="prev" href="complex_grader.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="getting_started.html">
+            
+                <a href="getting_started.html">
+            
+                    
+                    Getting Started
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="using_sr.html">
+            
+                <a href="using_sr.html">
+            
+                    
+                    Using SketchResponse
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="template.html">
+            
+                <a href="template.html">
+            
+                    
+                    A grading script template
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="simple_grader.html">
+            
+                <a href="simple_grader.html">
+            
+                    
+                    A simple grading script
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="complex_grader.html">
+            
+                <a href="complex_grader.html">
+            
+                    
+                    A complex grading script
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.4" data-path="physics_grader.html">
+            
+                <a href="physics_grader.html">
+            
+                    
+                    A physics grading script
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="local_test.html">
+            
+                <a href="local_test.html">
+            
+                    
+                    Testing your script
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="deployment.html">
+            
+                <a href="deployment.html">
+            
+                    
+                    Deployment
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="edx_quickstart.html">
+            
+                <a href="edx_quickstart.html">
+            
+                    
+                    edX
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="probconfig_plugins.html">
+            
+                <a href="probconfig_plugins.html">
+            
+                    
+                    Sketch Tool Configuration Reference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="api/">
+            
+                <a href="api/">
+            
+                    
+                    Grader Library API Reference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="offline_docs.html">
+            
+                <a href="offline_docs.html">
+            
+                    
+                    Offline Documentation
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >A physics grading script</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="a-physics-problem">A physics problem</h1>
+<p>This document will walk through the implementation of a grader script for
+a more complicated problem than the <a href="simple_grader.html">Simple Grader Tutorial</a> tutorial. The
+problem description for this grader script is below.</p>
+<p>Draw an isolation bubble on the free body diagram.</p> 
+
+<p>This problem will introduce new javascript drawing plugins to handle drawing polylines, polygons, line segments, and image stamps and some new backend API functions that can be used to
+evaluate these new sources of data.</p>
+<h2 id="imports">Imports</h2>
+<p>There are five SketchResponse python modules that must be imported for this example. As you saw in the <a href="simple_grader.html">Simple Grader Tutorial</a> all grader scripts must import the <code>sketchresponse</code> module. We again need to input the <code>GradeableFunction</code> module from <code>grader_lib</code>, but also need to import the <code>LineSegment</code>, <code>PolyLine</code>, and <code>Polygon</code> modules.</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> sketchresponse
+<span class="hljs-keyword">from</span> grader_lib <span class="hljs-keyword">import</span> GradeableFunction, LineSegment, PolyLine, Polygon
+</code></pre>
+<h2 id="problem-configuration">Problem configuration</h2>
+<p>The problem configuration is passed to the javascript front end to define the
+size and scale of the drawing space and to define which drawing tools are
+available for the problem. The <code>sketchresponse.config()</code> function takes a dict of
+configuration options.</p>
+<p>In the example configuration below, the first seven key/value pairs are required. In this configuration we increase the ranges of the X and Y axes compared to the <a href="simple_grader.html">Simple Grader Tutorial</a>:</p>
+<ul>
+<li><code>&apos;width&apos;: 750</code> sets the pixel width of the drawing space as 750 pixels</li>
+<li><code>&apos;height&apos;: 420</code> sets the pixel height of the drawing space to 420 pixels</li>
+<li><code>&apos;xrange&apos;: [-4, 4]</code> sets the numerical range of the x axis</li>
+<li><code>&apos;yrange&apos;: [-2.5, 2.5]</code> sets the numerical range of the y axis</li>
+<li><code>&apos;xscale&apos;: &apos;linear&apos;</code> sets the scale of the x axis to linear (only option currently implemented)</li>
+<li><code>&apos;yscale&apos;: &apos;linear&apos;</code> sets the scale of the y axis to linear (only option currently implemented)</li>
+<li><code>&apos;coordinates&apos;: &apos;cartesian&apos; or &apos;polar&apos;</code> sets the coordinate system used by the axes plugin to either cartesian or polar. It defaults to &apos;cartesian&apos;.</li>
+</ul>
+<p>The last entry <code>&apos;plugins&apos;</code> takes a list of dicts that enable the specific javascript plugins that are available to the user. All plugins are declared by &apos;name&apos;.</p>
+<p>The &apos;axes&apos; and &apos;freeform&apos; plugin usage here is identical to the <a href="simple_grader.html">Simple Grader Tutorial</a> and is explained there as well as on the <a href="probconfig_plugins.html">Plugin Description Page</a>.</p>
+<p>There are three new plugins introduced in this grading script: &apos;polyline&apos;, &apos;line-segment&apos;, and &apos;stamp&apos;. The declaration of these plugins is very similar to the declaration of the &apos;freeform&apos; plugin, however, each type of plugin has additional parameters that need to be defined. This script also introduces the use of &apos;intialstate&apos; data to pre-populate the canvas with data to help define the problem.</p>
+<p>The &apos;polyline&apos; plugin entry enables the a tool to draw either a multi-segment polyline, or a polygon depending on its configuration. In this problem we are using a polyline to intialize beam object and a polygon that the students will use to draw an isolation bubble. It has five or size configuration options to set here:</p>
+<ul>
+<li><code>&apos;id&apos;</code> sets the name of the argument of the grader callback function (described in the <a href="#grader">next section</a>) to which the data generated by this plugin is passed.</li>
+<li><code>&apos;label&apos;</code> is the name of the tool displayed to the user.</li>
+<li><code>&apos;color&apos;</code> is the color used to render the drawn line segments.</li>
+<li><code>&apos;closed&apos;</code> if True draws renders a polygon, if False renders a polyline</li>
+<li><code>&apos;fillColor&apos;</code> sets the fill color if &apos;closed&apos; is set to True</li>
+<li><code>&apos;readonly&apos;</code> if True disables the plugin on the toolbar, but can still be used to draw initial state data.</li>
+</ul>
+<p>The &apos;line-segment&apos; plugin entry enables a drawing tool for line segments. In this example we are using one line segment to initialize a mark on one of the beams, and another line segment that labels the forces in the intial state of the freebody diagram. Its configuration in this example uses six or seven configuration parameters.</p>
+<ul>
+<li><code>&apos;id&apos;</code> sets the name of the argument of the grader callback function (described in the <a href="#grader">next section</a>) to which the data generated by this plugin is passed.</li>
+<li><code>&apos;label&apos;</code> is the name of the tool displayed to the user.</li>
+<li><code>&apos;color&apos;</code> is the color used to render the drawn line segments.</li>
+<li><code>&apos;dashStyle&apos;</code> is the style of dashed line to used to draw the asymptote.</li>
+<li><code>&apos;lengthConstraint&apos;</code> sets the maximum length of the segment in pixels.</li>
+<li><code>&apos;readonly&apos;</code> if True disables the plugin on the toolbar, but can still be used to draw initial state data.</li>
+<li><code>&apos;arrowHead&apos;</code> optionally sets the length and width of an arrowhead on one end of the line segment.</li>
+<li><code>&apos;tag&apos;</code> optionally enables a string label for each line segment drawn</li>
+</ul>
+<p>In this problem, we want to label clockwise and counter-clockwise moments in the initial state of the freebody diagram. To do this we can declare two instances of the &apos;stamp&apos; plugin with different &apos;id&apos; and &apos;label&apos; values. The &apos;stamp&apos; plugin has five configuration options to set:</p>
+<ul>
+<li><code>&apos;id&apos;</code> sets the name of the argument of the grader callback function (described in the <a href="#grader">next section</a>) to which the data generated by this plugin is passed.</li>
+<li><code>&apos;label&apos;</code> is the name of the tool displayed to the user.</li>
+<li><code>&apos;scale&apos;</code> is a decimal value to scale the size of the source image.</li>
+<li><code>&apos;src&apos;</code> is a path to the source image to use for the stamp.</li>
+<li><code>&apos;readonly&apos;</code> if True disables the plugin on the toolbar, but can still be used to draw initial state data.</li>
+</ul>
+<p>The final new feature introduced in this example is the <code>&apos;initialstate&apos;</code> configuration parameter. This parameter can be used to supply a set of data values to be drawn to the canvas automatically using any of the configured plugins. The data can be automatically generated using the <a href="local_test.html">local testing server</a>.</p>
+<p>This example uses the &apos;point&apos; plugin, but introduces the &apos;tag&apos; parameter, which can be optionally included with any plugin that draws to the canvas. It adds a string label to each point drawn.</p>
+<p>A listing of all the built-in plugins can be found at <a href="probconfig_plugins.html">SketchResponse Plugins</a>.</p>
+<pre><code class="lang-python">problemconfig = sketchresponse.config({
+    <span class="hljs-string">&apos;width&apos;</span>: <span class="hljs-number">750</span>,
+    <span class="hljs-string">&apos;height&apos;</span>: <span class="hljs-number">420</span>,
+    <span class="hljs-string">&apos;xrange&apos;</span>: [<span class="hljs-number">-4</span>, <span class="hljs-number">4</span>],
+    <span class="hljs-string">&apos;yrange&apos;</span>: [<span class="hljs-number">-2.5</span>, <span class="hljs-number">2.5</span>],
+    <span class="hljs-string">&apos;xscale&apos;</span>: <span class="hljs-string">&apos;linear&apos;</span>,
+    <span class="hljs-string">&apos;yscale&apos;</span>: <span class="hljs-string">&apos;linear&apos;</span>,
+    <span class="hljs-string">&apos;plugins&apos;</span>: [
+        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;axes&apos;</span>},
+        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;polyline&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;pl&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Beam&apos;</span>, <span class="hljs-string">&apos;closed&apos;</span>: <span class="hljs-keyword">False</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;lightblue&apos;</span>, <span class="hljs-string">&apos;readonly&apos;</span>: <span class="hljs-keyword">True</span>},
+        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;polyline&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;pg&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Isolation bubble&apos;</span>, <span class="hljs-string">&apos;closed&apos;</span>: <span class="hljs-keyword">True</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;gray&apos;</span>, <span class="hljs-string">&apos;fillColor&apos;</span>: <span class="hljs-string">&apos;lightblue&apos;</span>},
+        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;point&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;pt&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Point&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;red&apos;</span>, <span class="hljs-string">&apos;size&apos;</span>: <span class="hljs-number">5</span>, <span class="hljs-string">&apos;hollow&apos;</span>: <span class="hljs-keyword">False</span>, <span class="hljs-string">&apos;readonly&apos;</span>: <span class="hljs-keyword">True</span>, <span class="hljs-string">&apos;tag&apos;</span>: {<span class="hljs-string">&apos;value&apos;</span>: <span class="hljs-string">&apos;tag&apos;</span>, <span class="hljs-string">&apos;xoffset&apos;</span>: <span class="hljs-number">5</span>, <span class="hljs-string">&apos;yoffset&apos;</span>: <span class="hljs-number">-5</span>, <span class="hljs-string">&apos;align&apos;</span>: <span class="hljs-string">&apos;start&apos;</span>}},
+        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;line-segment&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;ls&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Force&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;green&apos;</span>, <span class="hljs-string">&apos;dashStyle&apos;</span>: <span class="hljs-string">&apos;solid&apos;</span>, <span class="hljs-string">&apos;lengthContraint&apos;</span>: <span class="hljs-number">50</span>, <span class="hljs-string">&apos;arrowHead&apos;</span>: {<span class="hljs-string">&apos;length&apos;</span>: <span class="hljs-number">10</span>, <span class="hljs-string">&apos;base&apos;</span>: <span class="hljs-number">7</span>}, <span class="hljs-string">&apos;readonly&apos;</span>: <span class="hljs-keyword">True</span>},
+        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;line-segment&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Segment&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;black&apos;</span>, <span class="hljs-string">&apos;dashStyle&apos;</span>: <span class="hljs-string">&apos;dashdotted&apos;</span>, <span class="hljs-string">&apos;lengthContraint&apos;</span>: <span class="hljs-number">20</span>, <span class="hljs-string">&apos;readonly&apos;</span>: <span class="hljs-keyword">True</span>, <span class="hljs-string">&apos;tag&apos;</span>: {<span class="hljs-string">&apos;value&apos;</span>: <span class="hljs-string">&apos;tag&apos;</span>, <span class="hljs-string">&apos;xoffset&apos;</span>: <span class="hljs-number">5</span>, <span class="hljs-string">&apos;yoffset&apos;</span>: <span class="hljs-number">5</span>, <span class="hljs-string">&apos;align&apos;</span>: <span class="hljs-string">&apos;start&apos;</span>, <span class="hljs-string">&apos;position&apos;</span>: <span class="hljs-string">&apos;middle&apos;</span>}},
+        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;stamp&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;cwm&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;CWM&apos;</span>, <span class="hljs-string">&apos;scale&apos;</span>: <span class="hljs-number">0.5</span>, <span class="hljs-string">&apos;src&apos;</span>: <span class="hljs-string">&apos;/static/examples/cw_moment.png&apos;</span>, <span class="hljs-string">&apos;readonly&apos;</span>: <span class="hljs-keyword">True</span>},
+        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;stamp&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;ccwm&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;CCWM&apos;</span>, <span class="hljs-string">&apos;scale&apos;</span>: <span class="hljs-number">0.5</span>, <span class="hljs-string">&apos;src&apos;</span>: <span class="hljs-string">&apos;/static/examples/ccw_moment.png&apos;</span>, <span class="hljs-string">&apos;readonly&apos;</span>: <span class="hljs-keyword">True</span>}
+    ],
+    <span class="hljs-string">&apos;initialstate&apos;</span>: {
+  <span class="hljs-string">&quot;pl&quot;</span>: [
+    [
+      {
+        <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">41</span>,
+        <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">93</span>
+      },
+      {
+        <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">293</span>,
+        <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">94</span>
+      },
+      {
+        <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">293</span>,
+        <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">563</span>
+      }
+    ],
+    []
+  ],
+  <span class="hljs-string">&quot;pt&quot;</span>: [
+    {
+      <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">41</span>,
+      <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">93</span>,
+      <span class="hljs-string">&quot;tag&quot;</span>: <span class="hljs-string">&quot;A&quot;</span>
+    },
+    {
+      <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">293</span>,
+      <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">563</span>,
+      <span class="hljs-string">&quot;tag&quot;</span>: <span class="hljs-string">&quot;B&quot;</span>
+    }
+  ],
+  <span class="hljs-string">&quot;ls&quot;</span>: [
+    {
+      <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">344</span>,
+      <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">468</span>
+    },
+    {
+      <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">296</span>,
+      <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">468</span>
+    }
+  ],
+  <span class="hljs-string">&quot;c&quot;</span>: [
+    {
+      <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">256</span>,
+      <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">187</span>,
+      <span class="hljs-string">&quot;tag&quot;</span>: <span class="hljs-string">&quot;C&quot;</span>
+    },
+    {
+      <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">345</span>,
+      <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">187</span>
+    }
+  ],
+  <span class="hljs-string">&quot;cwm&quot;</span>: [
+    {
+      <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">126</span>,
+      <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">93</span>
+    }
+  ],
+  <span class="hljs-string">&quot;ccwm&quot;</span>: [
+    {
+      <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">293</span>,
+      <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">280</span>
+    }
+  ]
+}
+})
+</code></pre>
+<p>The above problem configuration settings will create a javascript tool that looks something like the image below.</p>
+<p><img src="imgs/physics_grader.png" alt="What the user will see" title="Physics Problem Config"></p>
+<h2 id="define-the-grader-callback-function">Define the grader callback function</h2>
+<div id="grader"></div>
+
+<h3 id="handling-the-input-data">Handling the input data</h3>
+<pre><code class="lang-python"><span class="hljs-meta">@sketchresponse.grader</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">grader</span><span class="hljs-params">(pl, pg, pt, ls, c, cwm, ccwm)</span>:</span>
+
+    pl = PolyLine.PolyLines(pl)
+    pg = Polygon.Polygons(pg)
+    cls = LineSegment.LineSegments(c)
+
+    beam = pl.get_polyline_as_segments(<span class="hljs-number">0</span>)
+</code></pre>
+<p>The first thing that the grader function needs to do is format the input data so that <a href="https://SketchResponse.github.io/sketchresponse" _target="blank">Grader Library API</a> methods of interest can be used to check specific features of the input data.</p>
+<p>As explained in the <a href="simple_grader.html">Simple Grader Tutorial</a> the data is passed to the grader function as a dictionary with keys equal to the &apos;id&apos; values used in the pluginconfig above so the dictionary can be directly unpacked into argument variables with the same names.</p>
+<p>The &apos;polyline&apos; data are evaluated with API methods in the <code>PolyLine.PolyLines</code> class, or the Polygon.Polygons class depending on if the plugin is configured &apos;closed&apos; or not. The &apos;line-segment&apos; data is evaluted with API methods in the <code>LineSegment.LineSegments</code>. The &apos;stamp&apos; data is not evaluated in this problem, but is evaluated exactly like &apos;point&apos; data using the <code>GradeableFunction.GradeableFunction</code> class.</p>
+<h3 id="checking-the-number-of-isolation-bubbles-drawn">Checking the number of isolation bubbles drawn</h3>
+<pre><code class="lang-python">    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> pg.get_polygon_count() == <span class="hljs-number">1</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>, <span class="hljs-string">&quot;Did you forget the isolation bubble?&quot;</span>
+</code></pre>
+<p>This first check verifies that there is only one isolation bubble drawn in the input data.</p>
+<h3 id="checking-the-intersections-of-the-isolation-bubble-with-the-beams">Checking the intersections of the isolation bubble with the beams</h3>
+<pre><code class="lang-python">    poly = pg.polygons[<span class="hljs-number">0</span>]
+
+    beam1 = beam.segments[<span class="hljs-number">0</span>]
+    beam2 = beam.segments[<span class="hljs-number">1</span>]
+
+    <span class="hljs-keyword">if</span> len(pg.get_intersections_with_polygon_boundary(beam1, poly)) &gt; <span class="hljs-number">0</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>, <span class="hljs-string">&quot;Isolation bubble should not cut vertical beam.&quot;</span>
+
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> len(pg.get_intersections_with_polygon_boundary(beam2, poly)) == <span class="hljs-number">1</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>, <span class="hljs-string">&quot;Isolation bubble should only cut the horizontal beam once.&quot;</span>
+</code></pre>
+<p>There are two valid isolation bubbles that can be drawn for this problem. In both of them, the vertical beam should not be cut by the bubble and the horizontal beam should be cut at the point labeled C.</p>
+<h3 id="checking-the-beam-points-on-the-isolation-bubble">Checking the beam points on the isolation bubble</h3>
+<pre><code class="lang-python">    <span class="hljs-keyword">if</span> pg.point_is_on_boundary([<span class="hljs-number">-2</span>, <span class="hljs-number">-1</span>]) == <span class="hljs-keyword">None</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>, <span class="hljs-string">&quot;Check where the isolation bubble cuts the horizontal beam.&quot;</span>
+
+    <span class="hljs-keyword">if</span> pg.point_is_on_boundary([<span class="hljs-number">-3</span>, <span class="hljs-number">2</span>]) == <span class="hljs-keyword">None</span> <span class="hljs-keyword">and</span> pg.point_is_on_boundary([<span class="hljs-number">2</span>, <span class="hljs-number">-1</span>]) == <span class="hljs-keyword">None</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>, <span class="hljs-string">&quot;Check the isolation bubble containment.&quot;</span>
+</code></pre>
+<p>The correct isolation bubbles will have the point C on the horizontal beam on the boundary of the bubble. It will also have either the top endpoint of the vertical beam, A, or the right end point of the horizontal beam, B, on the bubble&apos;s boundary.</p>
+<h3 id="all-checks-passed-so-return-true">All checks passed, so return True</h3>
+<pre><code class="lang-python">    <span class="hljs-keyword">return</span> <span class="hljs-keyword">True</span>, <span class="hljs-string">&quot;Good job!&quot;</span>
+</code></pre>
+<h3 id="putting-it-all-together">Putting it all together</h3>
+<p>Combining all the code above into a single function gives us the following. You will notice that the error conditions are tested at multiple points during the evaluation and used as an early failure condition. If the numbers of expected bubbles is not correct, then future checks are likely to not be able to run on the data so returning early ensures the student gets meaningful feedback.</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> sketchresponse
+<span class="hljs-keyword">from</span> grader_lib <span class="hljs-keyword">import</span> GradeableFunction, LineSegment, PolyLine, Polygon
+
+problemconfig = sketchresponse.config({
+    <span class="hljs-string">&apos;width&apos;</span>: <span class="hljs-number">750</span>,
+    <span class="hljs-string">&apos;height&apos;</span>: <span class="hljs-number">420</span>,
+    <span class="hljs-string">&apos;xrange&apos;</span>: [<span class="hljs-number">-4</span>, <span class="hljs-number">4</span>],
+    <span class="hljs-string">&apos;yrange&apos;</span>: [<span class="hljs-number">-2.5</span>, <span class="hljs-number">2.5</span>],
+    <span class="hljs-string">&apos;xscale&apos;</span>: <span class="hljs-string">&apos;linear&apos;</span>,
+    <span class="hljs-string">&apos;yscale&apos;</span>: <span class="hljs-string">&apos;linear&apos;</span>,
+    <span class="hljs-string">&apos;plugins&apos;</span>: [
+        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;axes&apos;</span>},
+        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;polyline&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;pl&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Beam&apos;</span>, <span class="hljs-string">&apos;closed&apos;</span>: <span class="hljs-keyword">False</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;lightblue&apos;</span>, <span class="hljs-string">&apos;readonly&apos;</span>: <span class="hljs-keyword">True</span>},
+        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;polyline&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;pg&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Isolation bubble&apos;</span>, <span class="hljs-string">&apos;closed&apos;</span>: <span class="hljs-keyword">True</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;gray&apos;</span>, <span class="hljs-string">&apos;fillColor&apos;</span>: <span class="hljs-string">&apos;lightblue&apos;</span>},
+        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;point&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;pt&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Point&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;red&apos;</span>, <span class="hljs-string">&apos;size&apos;</span>: <span class="hljs-number">5</span>, <span class="hljs-string">&apos;hollow&apos;</span>: <span class="hljs-keyword">False</span>, <span class="hljs-string">&apos;readonly&apos;</span>: <span class="hljs-keyword">True</span>, <span class="hljs-string">&apos;tag&apos;</span>: {<span class="hljs-string">&apos;value&apos;</span>: <span class="hljs-string">&apos;tag&apos;</span>, <span class="hljs-string">&apos;xoffset&apos;</span>: <span class="hljs-number">5</span>, <span class="hljs-string">&apos;yoffset&apos;</span>: <span class="hljs-number">-5</span>, <span class="hljs-string">&apos;align&apos;</span>: <span class="hljs-string">&apos;start&apos;</span>}},
+        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;line-segment&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;ls&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Force&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;green&apos;</span>, <span class="hljs-string">&apos;dashStyle&apos;</span>: <span class="hljs-string">&apos;solid&apos;</span>, <span class="hljs-string">&apos;lengthContraint&apos;</span>: <span class="hljs-number">50</span>, <span class="hljs-string">&apos;arrowHead&apos;</span>: {<span class="hljs-string">&apos;length&apos;</span>: <span class="hljs-number">10</span>, <span class="hljs-string">&apos;base&apos;</span>: <span class="hljs-number">7</span>}, <span class="hljs-string">&apos;readonly&apos;</span>: <span class="hljs-keyword">True</span>},
+        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;line-segment&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Segment&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;black&apos;</span>, <span class="hljs-string">&apos;dashStyle&apos;</span>: <span class="hljs-string">&apos;dashdotted&apos;</span>, <span class="hljs-string">&apos;lengthContraint&apos;</span>: <span class="hljs-number">20</span>, <span class="hljs-string">&apos;readonly&apos;</span>: <span class="hljs-keyword">True</span>, <span class="hljs-string">&apos;tag&apos;</span>: {<span class="hljs-string">&apos;value&apos;</span>: <span class="hljs-string">&apos;tag&apos;</span>, <span class="hljs-string">&apos;xoffset&apos;</span>: <span class="hljs-number">5</span>, <span class="hljs-string">&apos;yoffset&apos;</span>: <span class="hljs-number">5</span>, <span class="hljs-string">&apos;align&apos;</span>: <span class="hljs-string">&apos;start&apos;</span>, <span class="hljs-string">&apos;position&apos;</span>: <span class="hljs-string">&apos;middle&apos;</span>}},
+        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;stamp&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;cwm&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;CWM&apos;</span>, <span class="hljs-string">&apos;scale&apos;</span>: <span class="hljs-number">0.5</span>, <span class="hljs-string">&apos;src&apos;</span>: <span class="hljs-string">&apos;/static/examples/cw_moment.png&apos;</span>, <span class="hljs-string">&apos;readonly&apos;</span>: <span class="hljs-keyword">True</span>},
+        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;stamp&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;ccwm&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;CCWM&apos;</span>, <span class="hljs-string">&apos;scale&apos;</span>: <span class="hljs-number">0.5</span>, <span class="hljs-string">&apos;src&apos;</span>: <span class="hljs-string">&apos;/static/examples/ccw_moment.png&apos;</span>, <span class="hljs-string">&apos;readonly&apos;</span>: <span class="hljs-keyword">True</span>}
+    ],
+    <span class="hljs-string">&apos;initialstate&apos;</span>: {
+  <span class="hljs-string">&quot;pl&quot;</span>: [
+    [
+      {
+        <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">41</span>,
+        <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">93</span>
+      },
+      {
+        <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">293</span>,
+        <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">94</span>
+      },
+      {
+        <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">293</span>,
+        <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">563</span>
+      }
+    ],
+    []
+  ],
+  <span class="hljs-string">&quot;pt&quot;</span>: [
+    {
+      <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">41</span>,
+      <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">93</span>,
+      <span class="hljs-string">&quot;tag&quot;</span>: <span class="hljs-string">&quot;A&quot;</span>
+    },
+    {
+      <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">293</span>,
+      <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">563</span>,
+      <span class="hljs-string">&quot;tag&quot;</span>: <span class="hljs-string">&quot;B&quot;</span>
+    }
+  ],
+  <span class="hljs-string">&quot;ls&quot;</span>: [
+    {
+      <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">344</span>,
+      <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">468</span>
+    },
+    {
+      <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">296</span>,
+      <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">468</span>
+    }
+  ],
+  <span class="hljs-string">&quot;c&quot;</span>: [
+    {
+      <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">256</span>,
+      <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">187</span>,
+      <span class="hljs-string">&quot;tag&quot;</span>: <span class="hljs-string">&quot;C&quot;</span>
+    },
+    {
+      <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">345</span>,
+      <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">187</span>
+    }
+  ],
+  <span class="hljs-string">&quot;cwm&quot;</span>: [
+    {
+      <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">126</span>,
+      <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">93</span>
+    }
+  ],
+  <span class="hljs-string">&quot;ccwm&quot;</span>: [
+    {
+      <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">293</span>,
+      <span class="hljs-string">&quot;x&quot;</span>: <span class="hljs-number">280</span>
+    }
+  ]
+}
+})
+
+<span class="hljs-meta">@sketchresponse.grader</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">grader</span><span class="hljs-params">(pl, pg, pt, ls, c, cwm, ccwm)</span>:</span>
+
+    pl = PolyLine.PolyLines(pl)
+    pg = Polygon.Polygons(pg)
+    cls = LineSegment.LineSegments(c)
+
+    beam = pl.get_polyline_as_segments(<span class="hljs-number">0</span>)
+
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> pg.get_polygon_count() == <span class="hljs-number">1</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>, <span class="hljs-string">&quot;Did you forget the isolation bubble?&quot;</span>
+
+    poly = pg.polygons[<span class="hljs-number">0</span>]
+
+    beam1 = beam.segments[<span class="hljs-number">0</span>]
+    beam2 = beam.segments[<span class="hljs-number">1</span>]
+
+    <span class="hljs-keyword">if</span> len(pg.get_intersections_with_polygon_boundary(beam1, poly)) &gt; <span class="hljs-number">0</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>, <span class="hljs-string">&quot;Isolation bubble should not cut vertical beam.&quot;</span>
+
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> len(pg.get_intersections_with_polygon_boundary(beam2, poly)) == <span class="hljs-number">1</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>, <span class="hljs-string">&quot;Isolation bubble should only cut the horizontal beam once.&quot;</span>
+
+    <span class="hljs-keyword">if</span> pg.point_is_on_boundary([<span class="hljs-number">-2</span>, <span class="hljs-number">-1</span>]) == <span class="hljs-keyword">None</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>, <span class="hljs-string">&quot;Check where the isolation bubble cuts the horizontal beam.&quot;</span>
+
+    <span class="hljs-keyword">if</span> pg.point_is_on_boundary([<span class="hljs-number">-3</span>, <span class="hljs-number">2</span>]) == <span class="hljs-keyword">None</span> <span class="hljs-keyword">and</span> pg.point_is_on_boundary([<span class="hljs-number">2</span>, <span class="hljs-number">-1</span>]) == <span class="hljs-keyword">None</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>, <span class="hljs-string">&quot;Check the isolation bubble containment.&quot;</span>
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">True</span>, <span class="hljs-string">&quot;Good job!&quot;</span>
+</code></pre>
+<h2 id="testing-the-script">Testing the script</h2>
+<p>Once the script is written, you can run the script in the local testing server. See the <a href="local_test.html">Test a Grading Script on a Local Server</a> tutorial for details on installing and running the testing server.</p>
+<p>There is already a copy of this grader script in the <code>grader_scripts</code> directory so all you need to do is start the server and point your browser of choice to the url:</p>
+<pre><code>http://localhost:5000/physics_grader
+</code></pre><p>You should see the configured Sketch Tool. If you sketch the function shown at the beginning of this tutorial, you should see an accept message. Any other sketches should return a reject message.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="complex_grader.html" class="navigation navigation-prev " aria-label="Previous page: A complex grading script">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="local_test.html" class="navigation navigation-next " aria-label="Next page: Testing your script">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"A physics grading script","level":"1.3.4","depth":2,"next":{"title":"Testing your script","level":"1.3.5","depth":2,"path":"local_test.md","ref":"local_test.md","articles":[]},"previous":{"title":"A complex grading script","level":"1.3.3","depth":2,"path":"complex_grader.md","ref":"complex_grader.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"physics_grader.md","mtime":"2017-06-09T19:30:30.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2017-06-09T19:39:59.993Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
