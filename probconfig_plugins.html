@@ -181,7 +181,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.5" data-path="local_test.html">
+        <li class="chapter " data-level="1.3.5" data-path="groups_grader.html">
+            
+                <a href="groups_grader.html">
+            
+                    
+                    Grading Grouped Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="local_test.html">
             
                 <a href="local_test.html">
             
@@ -257,7 +270,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7" data-path="offline_docs.html">
+        <li class="chapter " data-level="1.7" data-path="gradeable_data_format.html">
+            
+                <a href="gradeable_data_format.html">
+            
+                    
+                    Gradeable Data Format
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="offline_docs.html">
             
                 <a href="offline_docs.html">
             
@@ -316,7 +342,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="problem-configuration-plugins">Problem Configuration Plugins</h1>
-<p>This document provides a description of all the SketchResponse plugins and how
+<p>This document provides a description of all the SketchResponse problem configuration parameters and how
 to declare them. Declaring any plugin in a grader&apos;s problem configuration
 enables the selection of that plugin in the javascript front-end tool.</p>
 <p>Any of these plugins can be declared multiple times causing
@@ -325,18 +351,36 @@ the <a href="complex_grader.html">Complex Grader Example</a> for an example wher
 is used.</p>
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
+<li><a href="#main">Main</a></li>
 <li><a href="#axes">Axes</a></li>
 <li><a href="#background">Background</a></li>
 <li><a href="#freeform">Freeform</a></li>
-<li><a href="#spline">Spline</a></li>
-<li><a href="#point">Point</a></li>
-<li><a href="#line-segment">Line Segment</a></li>
-<li><a href="#vert-line">Vertical Asymptote</a></li>
-<li><a href="#horiz-line">Horizontal Asymptote</a></li>
+<li><a href="#horiz-line">Horizontal Line</a></li>
 <li><a href="#image">Image</a></li>
-<li><a href="#stamp">Stamp</a></li>
+<li><a href="#line-segment">Line Segment</a></li>
+<li><a href="#point">Point</a></li>
 <li><a href="#polyline">PolyLine</a></li>
+<li><a href="#spline">Spline</a></li>
+<li><a href="#stamp">Stamp</a></li>
+<li><a href="#vert-line">Vertical Line</a></li>
 <li><a href="#initialstate">Initial State</a></li>
+</ul>
+<p><div id="main"></div></p>
+<h2 id="main">Main</h2>
+<p>The main section of the problem configuration contains parameters that affect the
+overall look of the sketch tool. The main section should only be declared once
+per problem configuration, unlike plugins, which can be declared mulitple times.</p>
+<ul>
+<li><code>&apos;width&apos;: &lt;integer&gt;</code> - The width of the drawing canvas in pixels.</li>
+<li><code>&apos;height&apos;: &lt;integer&gt;</code> - The height of the drawing canvas in pixels.</li>
+<li><code>&apos;xrange&apos;: [&lt;number&gt;, &lt;number&gt;]</code> - The numerical range of the x axis.</li>
+<li><code>&apos;yrange&apos;: [&lt;number&gt;, &lt;number&gt;]</code> - The numerical range of the y axis.</li>
+<li><code>&apos;xscale&apos;: &apos;linear&apos;</code> - Currently only linear. </li>
+<li><code>&apos;yscale&apos;: &apos;linear&apos;</code> - Currently only linear.</li>
+<li><code>&apos;coordinates&apos;: &lt;&apos;cartesians&apos;|&apos;polar&apos;&gt;</code> - The type of axes to draw.</li>
+<li><code>&apos;debug&apos;: &lt;True|False&gt;</code> - If true prints debug information about the<pre><code>                problem configuration to your browser&apos;s
+          developer console.
+</code></pre></li>
 </ul>
 <p><div id="axes"></div></p>
 <h2 id="axes">Axes</h2>
@@ -347,25 +391,77 @@ is used.</p>
 <p>It also has optional parameters that depend on the &apos;coordinates&apos; option defined one level up:</p>
 <p>If &apos;cartesian&apos; is chosen, the following parameters will take effect:</p>
 <ul>
-<li><code>&apos;xmajor&apos;: &lt;number&gt;(default: none)</code> - the major tick spacing for the x axis</li>
-<li><code>&apos;ymajor&apos;: &lt;number&gt;(default: none)</code> - the major tick spacing for the y axis</li>
-<li><code>&apos;xminor&apos;: &lt;number&gt;(default: none)</code> - the minor tick spacing for the x axis</li>
-<li><code>&apos;yminor&apos;: &lt;number&gt;(default: none)</code> - the minor tick spacing for the y axis</li>
+<li><code>&apos;xmajor&apos;: &lt;number&gt;(default: none)</code> - the major tick spacing for the x axis.</li>
+<li><code>&apos;ymajor&apos;: &lt;number&gt;(default: none)</code> - the major tick spacing for the y axis.</li>
+<li><code>&apos;xminor&apos;: &lt;number&gt;(default: none)</code> - the minor tick spacing for the x axis.</li>
+<li><code>&apos;yminor&apos;: &lt;number&gt;(default: none)</code> - the minor tick spacing for the y axis.</li>
+<li><code>&apos;xlabels&apos;: &lt;number&gt;(default: none)</code> - the label spacing for the x axis.</li>
+<li><code>&apos;ylabels&apos;: &lt;number&gt;(default: none)</code> - the label spacing for the y axis.</li>
+<li><code>&apos;major&apos;: &lt;number&gt;(default: none)</code> - the major tick spacing for the x and y axis.</li>
+<li><code>&apos;minor&apos;: &lt;number&gt;(default: none)</code> - the minor tick spacing for the x and y axis.</li>
+<li><code>&apos;labels&apos;: &lt;number&gt;(default: none)</code> - the label spacing for the x and y axis.</li>
 </ul>
 <p>Note: if some (or all) of the above are missing, an automatic, best-fitting value will be generated as a default.</p>
+<ul>
+<li><code>&apos;strokeWidth&apos;: &lt;object&gt;</code> - the strokeWidth key must be an object containing the following keys:<ul>
+<li><code>&apos;xmajor&apos;: &lt;int&gt;(default: 2)</code> - an integer defining the stroke width in pixels of the vertical major lines.</li>
+<li><code>&apos;ymajor&apos;: &lt;int&gt;(default: 2)</code> - an integer defining the stroke width in pixels of the horizontal major lines.</li>
+<li><code>&apos;xminor&apos;: &lt;int&gt;(default: 1)</code> - an integer defining the stroke width in pixels of the vertical minor lines.</li>
+<li><code>&apos;yminor&apos;: &lt;int&gt;(default: 1)</code> - an integer defining the stroke width in pixels of the horizontal minor lines.</li>
+</ul>
+</li>
+<li><code>&apos;colors&apos;: &lt;object&gt;</code> - the colors key must be an object containing the following keys:<ul>
+<li><code>&apos;xmajor&apos;: &lt;string&gt;(default: &apos;#f0f0f0&apos;)</code> - a string defining the color of the major vertical lines.</li>
+<li><code>&apos;ymajor&apos;: &lt;string&gt;(default: &apos;#f0f0f0&apos;)</code> - a string defining the color of the major horizontal lines.</li>
+<li><code>&apos;xminor&apos;: &lt;string&gt;(default: &apos;#f6f6f6&apos;)</code> - a string defining the color of the minor vertical lines.</li>
+<li><code>&apos;yminor&apos;: &lt;string&gt;(default: &apos;#f6f6f6&apos;)</code> - a string defining the color of the minor horizontal lines.</li>
+<li><code>&apos;xlabels&apos;: &lt;string&gt;(default: &apos;#333&apos;)</code> - a string defining the color of the x axis labels.</li>
+<li><code>&apos;ylabels&apos;: &lt;string&gt;(default: &apos;#333&apos;)</code> - a string defining the color of the y axis labels.</li>
+<li><code>&apos;zeroLabel&apos;: &lt;string&gt;(default: &apos;#333&apos;)</code> - a string defining the color of the origin label.</li>
+</ul>
+</li>
+<li><code>&apos;fontSize&apos;: &lt;object&gt;</code> - the fontSize key must be an object containing the following keys:<ul>
+<li><code>&apos;xlabels&apos;: &lt;int&gt;(default: 14)</code> - an integer defining the font size of the x axis labels.</li>
+<li><code>&apos;ylabels&apos;: &lt;int&gt;(default: 14)</code> - an integer defining the font size of the y axis labels.</li>
+<li><code>&apos;zeroLabel&apos;: &lt;int&gt;(default: 14)</code> - an integer defining the font size of the origin label.</li>
+</ul>
+</li>
+</ul>
 <p>If &apos;polar&apos; is chosen, the following parameters will take effect:</p>
 <ul>
-<li><code>&apos;rrange&apos;: &lt;number&gt;(default: 10)</code> - the distance between the origin and the outer circle</li>
-<li><code>&apos;rmajor&apos;: &lt;number&gt;(default: 1)</code> - the distance between the circles of the polar grid</li>
-<li><code>&apos;thetamajor&apos;: &lt;number&gt;(default: 30)</code> - the angle (in degrees) between the rays of the polar grid</li>
+<li><code>&apos;rrange&apos;: &lt;number&gt;(default: 10)</code> - the distance between the origin and the outer circle.</li>
+<li><code>&apos;rmajor&apos;: &lt;number&gt;(default: 1)</code> - the distance between the circles of the polar grid.</li>
+<li><code>&apos;thetamajor&apos;: &lt;number&gt;(default: 30)</code> - the angle (in degrees) between the rays of the polar grid.</li>
 <li><code>&apos;strokeWidth&apos;: &lt;object&gt;</code> - the strokeWidth key must be an object containing the following keys:<ul>
-<li><code>&apos;circle&apos;: &lt;int&gt;</code> - an integer defining the stroke width in pixels of the circles drawn when using Polar coordinates.</li>
-<li><code>&apos;ray&apos;: &lt;int&gt;</code> - an integer defining the stroke width in pixels of the rays drawn when using Polar coordinates.</li>
+<li><code>&apos;circle&apos;: &lt;int&gt;(default: 2)</code> - an integer defining the stroke width in pixels of the circles.</li>
+<li><code>&apos;ray&apos;: &lt;int&gt;(default: 2)</code> - an integer defining the stroke width in pixels of the rays.</li>
+</ul>
+</li>
+<li><code>&apos;colors&apos;: &lt;object&gt;</code> - the colors key must be an object containing the following keys:<ul>
+<li><code>&apos;circle&apos;: &lt;string&gt;(default: &apos;#f0f0f0&apos;)</code> - a string defining the color of the circles.</li>
+<li><code>&apos;ray&apos;: &lt;string&gt;(default: &apos;#f0f0f0&apos;)</code> - a string defining the color of the rays.</li>
 </ul>
 </li>
 </ul>
 <p>It also has optional parameters that do NOT depend of the &apos;coordinates&apos; option defined one level up:</p>
 <ul>
+<li><code>&apos;strokeWidth&apos;: &lt;object&gt;</code> - the strokeWidth key must be an object containing the following keys:<ul>
+<li><code>&apos;xaxis&apos;: &lt;int&gt;(default: 1)</code> - an integer defining the stroke width in pixels of the x axis.</li>
+<li><code>&apos;yaxis&apos;: &lt;int&gt;(default: 1)</code> - an integer defining the stroke width in pixels of the y axis.</li>
+</ul>
+</li>
+<li><code>&apos;colors&apos;: &lt;object&gt;</code> - the colors key must be an object containing the following keys:<ul>
+<li><code>&apos;xaxis&apos;: &lt;string&gt;(default: &apos;#333&apos;)</code> - a string defining the color of the x axis.</li>
+<li><code>&apos;yaxis&apos;: &lt;string&gt;(default: &apos;#333&apos;)</code> - a string defining the color of the y axis.</li>
+<li><code>&apos;xaxisLabel&apos;: &lt;string&gt;(default: &apos;#333&apos;)</code> - a string defining the color of the x axis label.</li>
+<li><code>&apos;yaxisLabel&apos;: &lt;string&gt;(default: &apos;#333&apos;)</code> - a string defining the color of the y axis label.</li>
+</ul>
+</li>
+<li><code>&apos;fontSize&apos;: &lt;object&gt;</code> - the fontSize key must be an object containing the following keys:<ul>
+<li><code>&apos;xaxisLabel&apos;: &lt;int&gt;(default: 14)</code> - an integer defining the font size of the x axis label.</li>
+<li><code>&apos;yaxisLabel&apos;: &lt;int&gt;(default: 14)</code> - an integer defining the font size of the y axis label.</li>
+</ul>
+</li>
 <li><code>&apos;xaxisLabel&apos;: &lt;object&gt;</code> - the xaxisLabel key must be an object containing the following keys:<ul>
 <li><code>&apos;value&apos;: &lt;string&gt;</code> - the string to label the x axis with.</li>
 <li><code>&apos;dx&apos;: &lt;int&gt;</code> - a pixel offset in the x direction.</li>
@@ -378,21 +474,9 @@ is used.</p>
 <li><code>&apos;dy&apos;: &lt;int&gt;</code> - a pixel offset in the y direction.</li>
 </ul>
 </li>
-<li><code>&apos;colors&apos;: &lt;object&gt;</code> - the colors key must be an object containing the following keys:<ul>
-<li><code>&apos;circle&apos;: &lt;string&gt;</code> - a string defining the color of the circles drawn when using Polar coordinates.</li>
-<li><code>&apos;ray&apos;: &lt;string&gt;</code> - a string defining the color of the rays drawn when using Polar coordinates.</li>
-<li><code>&apos;xaxisLabel&apos;: &lt;string&gt;</code> - a string defining the color of the x axis label for either coordinate system.</li>
-<li><code>&apos;yaxisLabel&apos;: &lt;string&gt;</code> - a string defining the color of the y axis label for either coordinate system.</li>
-</ul>
-</li>
-<li><code>&apos;fontSize&apos;: &lt;object&gt;</code> - the fontSize key must be an object containing the following keys:<ul>
-<li><code>&apos;xaxisLabel&apos;: &lt;int&gt;</code> - an integer defining the font size of the x axis label.</li>
-<li><code>&apos;yaxisLabel&apos;: &lt;int&gt;</code> - an integer defining the font size of the y axis label.</li>
-</ul>
-</li>
 </ul>
 <p>E.g.</p>
-<pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;axes&apos;</span>, <span class="hljs-string">&apos;rrange&apos;</span>: <span class="hljs-string">&apos;20&apos;</span>, <span class="hljs-string">&apos;rmajor&apos;</span>: <span class="hljs-string">&apos;5&apos;</span>, thetamajor: <span class="hljs-string">&apos;10&apos;</span>}
+<pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;axes&apos;</span>, <span class="hljs-string">&apos;rrange&apos;</span>: <span class="hljs-string">&apos;20&apos;</span>, <span class="hljs-string">&apos;rmajor&apos;</span>: <span class="hljs-string">&apos;5&apos;</span>, <span class="hljs-string">&apos;thetamajor&apos;</span>: <span class="hljs-string">&apos;10&apos;</span>}
 </code></pre>
 <p><div id="background"></div></p>
 <h2 id="background">Background</h2>
@@ -409,19 +493,19 @@ is used.</p>
 <p><div id="freeform"></div></p>
 <h2 id="freeform">Freeform</h2>
 <p>The Freeform plugin adds a button to  the tool to draw freeform lines on the axes. It has
-four parameters that must be defined:</p>
+two parameters that must be defined:</p>
 <ul>
 <li><code>&apos;name&apos;: &apos;freeform&apos;</code> - the name key <em>must</em> have the value &apos;freeform&apos;</li>
 <li><code>&apos;id&apos;: &lt;unique identifier string&gt;</code> - the id key <em>must</em> have a <em>unique</em> value.
 This value is used as the key for the data created by this plugin in the JSON
 string returned to the grader function.</li>
-<li><code>&apos;label&apos;: &lt;descriptive string&gt;</code> - the label key should be given a descriptive string. This string will be used to label the selection button in the javascript
-front-end tool.</li>
-<li><code>&apos;color&apos;: &lt;a color string&gt;</code> - the color key should be give a color string that
-javascript recognizes. A listing of color names can be found <a href="http://www.w3schools.com/colors/colors_names.asp" _target="blank">here</a>.</li>
 </ul>
 <p>It also has optional parameters:</p>
 <ul>
+<li><code>&apos;label&apos;: &lt;descriptive string&gt;(default: &apos;Freeform&apos;)</code> - the label key should be given a descriptive string. This string will be used to label the selection button in the javascript
+front-end tool.</li>
+<li><code>&apos;color&apos;: &lt;a color string&gt;(default: &apos;dimgray&apos;)</code> - the color key should be give a color string that
+javascript recognizes. A listing of color names can be found <a href="http://www.w3schools.com/colors/colors_names.asp" _target="blank">here</a>.</li>
 <li><code>&apos;tag&apos;: &lt;object&gt;</code> - the tag key must be an object containing the following keys:<ul>
 <li><code>&apos;value&apos;: &lt;string&gt;</code> - the intial value of the tag when the data is drawn on the canvas.</li>
 <li><code>&apos;xoffset&apos;: &lt;int&gt;</code> - the pixel offset in the x direction.</li>
@@ -429,26 +513,30 @@ javascript recognizes. A listing of color names can be found <a href="http://www
 <li><code>&apos;align&apos;: &lt;string&gt;</code> - a string defining the position of the tag from which the offsets are applied. May be &apos;start&apos;|&apos;middle&apos;|&apos;end&apos;.</li>
 </ul>
 </li>
-<li><code>&apos;readonly&apos;: &lt;True|False&gt;</code> - if True marks the plugin as readonly and not available in the toolbar and any data in the initialstate from this plugin is drawn to the canvas in a non-editable form.</li>
+<li><code>&apos;readonly&apos;: &lt;True|False&gt;(default: False)</code> - if True marks the plugin as readonly and not available in the toolbar and any data in the initialstate from this plugin is drawn to the canvas in a non-editable form.</li>
 </ul>
 <p>E.g.</p>
 <pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;freeform&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;f&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Function f(x)&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>:<span class="hljs-string">&apos;blue&apos;</span>, <span class="hljs-string">&apos;tag&apos;</span>: {<span class="hljs-string">&apos;value&apos;</span>: <span class="hljs-string">&apos;tag&apos;</span>, <span class="hljs-string">&apos;xoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;yoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;align&apos;</span>: <span class="hljs-string">&apos;start&apos;</span>}}
 </code></pre>
-<p><div id="spline"></div></p>
-<h2 id="spline">Spline</h2>
-<p>The Spline plugin adds a button to the tool to draw a sequence of points between which a spline is interpolated. It has four parameters that must be defined:</p>
+<p><div id="horiz-line"></div></p>
+<h2 id="horizontal-line">Horizontal Line</h2>
+<p>The Horizontal Line plugin adds a button to  the tool to draw horizontal lines on the
+axes. It has two parameters that must be defined:</p>
 <ul>
-<li><code>&apos;name&apos;: &apos;freeform&apos;</code> - the name key <em>must</em> have the value &apos;freeform&apos;</li>
+<li><code>&apos;name&apos;: &apos;horizontal-line&apos;</code> - the name key <em>must</em> have the value
+&apos;horizontal-line&apos;</li>
 <li><code>&apos;id&apos;: &lt;unique identifier string&gt;</code> - the id key <em>must</em> have a <em>unique</em> value.
 This value is used as the key for the data created by this plugin in the JSON
 string returned to the grader function.</li>
-<li><code>&apos;label&apos;: &lt;descriptive string&gt;</code> - the label key should be given a descriptive string. This string will be used to label the selection button in the javascript
-front-end tool.</li>
-<li><code>&apos;color&apos;: &lt;a color string&gt;</code> - the color key should be give a color string that
-javascript recognizes. A listing of color names can be found <a href="http://www.w3schools.com/colors/colors_names.asp" _target="blank">here</a>.</li>
 </ul>
 <p>It also has optional parameters:</p>
 <ul>
+<li><code>&apos;label&apos;: &lt;descriptive string&gt;(default: &apos;Horizontal line&apos;)</code> - the label key should be given a descriptive string. This string will be used to label the selection button in the javascript
+front-end tool.</li>
+<li><code>&apos;color&apos;: &lt;a color string&gt;(default: &apos;dimgray&apos;)</code> - the color key should be give a color string that
+javascript recognizes. A listing of color names can be found <a href="http://www.w3schools.com/colors/colors_names.asp" _target="blank">here</a>.</li>
+<li><code>&apos;dashStyle&apos;: &lt;line dash string&gt;(default: &apos;solid&apos;)</code> - the dashStyle key should have a string
+description of the dash style to used for drawing the line. Possible values: &apos;dashed&apos;, &apos;longdashed&apos;, &apos;dotted&apos;, &apos;dashdotted&apos;, &apos;solid&apos;.</li>
 <li><code>&apos;tag&apos;: &lt;object&gt;</code> - the tag key must be an object containing the following keys:<ul>
 <li><code>&apos;value&apos;: &lt;string&gt;</code> - the intial value of the tag when the data is drawn on the canvas.</li>
 <li><code>&apos;xoffset&apos;: &lt;int&gt;</code> - the pixel offset in the x direction.</li>
@@ -456,41 +544,26 @@ javascript recognizes. A listing of color names can be found <a href="http://www
 <li><code>&apos;align&apos;: &lt;string&gt;</code> - a string defining the position of the tag from which the offsets are applied. May be &apos;start&apos;|&apos;middle&apos;|&apos;end&apos;.</li>
 </ul>
 </li>
-<li><code>&apos;readonly&apos;: &lt;True|False&gt;</code> - if True marks the plugin as readonly and not available in the toolbar and any data in the initialstate from this plugin is drawn to the canvas in a non-editable form.</li>
+<li><code>&apos;readonly&apos;: &lt;True|False&gt;(default: False)</code> - if True marks the plugin as readonly and not available in the toolbar and any data in the initialstate from this plugin is drawn to the canvas in a non-editable form.</li>
 </ul>
 <p>E.g.</p>
-<pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;spline&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;spl&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Function f(x)&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>:<span class="hljs-string">&apos;royalblue&apos;</span>, <span class="hljs-string">&apos;tag&apos;</span>: {<span class="hljs-string">&apos;value&apos;</span>: <span class="hljs-string">&apos;tag&apos;</span>, <span class="hljs-string">&apos;xoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;yoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;align&apos;</span>: <span class="hljs-string">&apos;start&apos;</span>}}
+<pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;horizontal-line&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;ha&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Horizontal asymptote&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;gray&apos;</span>, <span class="hljs-string">&apos;dashStyle&apos;</span>: <span class="hljs-string">&apos;dashdotted&apos;</span>, <span class="hljs-string">&apos;tag&apos;</span>: {<span class="hljs-string">&apos;value&apos;</span>: <span class="hljs-string">&apos;tag&apos;</span>, <span class="hljs-string">&apos;xoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;yoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;align&apos;</span>: <span class="hljs-string">&apos;start&apos;</span>}}
 </code></pre>
-<p><div id="point"></div></p>
-<h2 id="point">Point</h2>
-<p>The Point plugin adds a button to the tool to draw points on the axes. It has five
-parameters that must be defined:</p>
+<p><div id="image"></div></p>
+<h2 id="image">Image</h2>
+<p>Adds an image to the drawing canvas. It has two parameters that must be defined:</p>
 <ul>
-<li><code>&apos;name&apos;: &apos;point&apos;</code> - the name key <em>must</em> have the string value &apos;point&apos;</li>
-<li><code>&apos;id&apos;: &lt;unique identifier string&gt;</code> - the id key <em>must</em> have a <em>unique</em> value.
-This value is used as the key for the data created by this plugin in the JSON
-string returned to the grader function.</li>
-<li><code>&apos;label&apos;: &lt;descriptive string&gt;</code> - the label key should be given a descriptive string. This string will be used to label the selection button in the javascript
-front-end tool.</li>
-<li><code>&apos;color&apos;: &lt;a color string&gt;</code> - the color key should be give a color string that
-javascript recognizes. A listing of color names can be found <a href="http://www.w3schools.com/colors/colors_names.asp" _target="blank">here</a>.</li>
-<li><code>&apos;size&apos;: &lt;int&gt;</code> - the size key must be given an integer value. It sets the
-pixel diameter of the point drawn by the plugin.</li>
+<li><code>&apos;name&apos;: &apos;image&apos;</code> - the name key <em>must</em> have the value &apos;image&apos;.</li>
+<li><code>&apos;src&apos;: &lt;path to image file&gt;</code> - the path to the image file to insert.</li>
 </ul>
 <p>It also has optional parameters:</p>
 <ul>
-<li><code>&apos;hollow&apos;: &lt;True|False&gt;</code> - if set to True, the point will be drawn hollow. Default value: False.</li>
-<li><code>&apos;tag&apos;: &lt;object&gt;</code> - the tag key must be an object containing the following keys:<ul>
-<li><code>&apos;value&apos;: &lt;string&gt;</code> - the intial value of the tag when the data is drawn on the canvas.</li>
-<li><code>&apos;xoffset&apos;: &lt;int&gt;</code> - the pixel offset in the x direction.</li>
-<li><code>&apos;yoffset&apos;: &lt;int&gt;</code> - the pixel offset in the y direction.</li>
-<li><code>&apos;align&apos;: &lt;string&gt;</code> - a string defining the position of the tag from which the offsets are applied. May be &apos;start&apos;|&apos;middle&apos;|&apos;end&apos;.</li>
-</ul>
-</li>
-<li><code>&apos;readonly&apos;: &lt;True|False&gt;</code> - if True marks the plugin as readonly and not available in the toolbar and any data in the initialstate from this plugin is drawn to the canvas in a non-editable form.</li>
+<li><code>&apos;scale&apos;: &lt;number&gt;(default: 1)</code> - multiplier to scale the size of the image.</li>
+<li><code>&apos;align&apos;: &lt;alignment string&gt;(default: &apos;&apos;)</code> - possible values, &apos;top&apos;, &apos;left&apos;, &apos;bottom&apos;, &apos;right&apos;, &apos;&apos;.</li>
+<li><code>&apos;offset&apos;: [&lt;number&gt;,&lt;number&gt;]</code> - array of x, y offsets (default value[0, 0]).</li>
 </ul>
 <p>E.g.</p>
-<pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;point&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;cp&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Extremum&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;black&apos;</span>, <span class="hljs-string">&apos;size&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;hollow&apos;</span>: <span class="hljs-keyword">True</span>, <span class="hljs-string">&apos;tag&apos;</span>: {<span class="hljs-string">&apos;value&apos;</span>: <span class="hljs-string">&apos;tag&apos;</span>, <span class="hljs-string">&apos;xoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;yoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;align&apos;</span>: <span class="hljs-string">&apos;start&apos;</span>}}
+<pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;image&apos;</span>, <span class="hljs-string">&apos;align&apos;</span>: <span class="hljs-string">&apos;bottom&apos;</span>, <span class="hljs-string">&apos;src&apos;</span>: <span class="hljs-string">&apos;/static/image.png&apos;</span>}
 </code></pre>
 <p><div id="line-segment"></div></p>
 <h2 id="line-segment">Line Segment</h2>
@@ -508,28 +581,25 @@ The plugin behaves as follows:</p>
 </ul>
 </li>
 </ul>
-<p>It has five parameters that must be defined:</p>
+<p>It has two parameters that must be defined:</p>
 <ul>
 <li><code>&apos;name&apos;: &apos;line-segment&apos;</code> - the name key <em>must</em> have the value &apos;line-segment&apos;.</li>
 <li><code>&apos;id&apos;: &lt;unique identifier string&gt;</code> - the id key <em>must</em> have a <em>unique</em> value.
 This value is used as the key for the data created by this plugin in the JSON
 string returned to the grader function.</li>
-<li><code>&apos;label&apos;: &lt;descriptive string&gt;</code> - the label key should be given a descriptive string. This string will be used to label the selection button in the javascript
-front-end tool.</li>
-<li><code>&apos;color&apos;: &lt;a color string&gt;</code> - the color key should be give a color string that
-javascript recognizes. A listing of color names can be found <a href="http://www.w3schools.com/colors/colors_names.asp" _target="blank">here</a>.</li>
-<li><code>&apos;dashStyle&apos;: &lt;line dash string&gt;(default: &apos;solid&apos;)</code> - the dashStyle key should have a string
-description of the dash style to used for drawing the line. Possible values: &apos;dashed&apos;, &apos;longdashed&apos;, &apos;dotted&apos;, &apos;dashdotted&apos;, &apos;solid&apos;.</li>
 </ul>
 <p>It also has optional parameters:</p>
 <ul>
-<li><p><code>&apos;directionConstraint&apos;: &lt;a constraint string&gt;</code> - the directionConstraint key should be a string describing the constraint. Possible values: &apos;horizontal&apos;, &apos;vertical&apos;.</p>
-</li>
-<li><p><code>&apos;lengthConstraint&apos;: &lt;int&gt;</code> - the lengthConstraint key must be given an integer value. It sets the
-maximum pixel length of the line segment drawn by the plugin.</p>
-</li>
-<li><p><code>&apos;arrowHead&apos;: &lt;object&gt;</code> - the arrowHead key must be an object containing the following keys:</p>
-<ul>
+<li><code>&apos;label&apos;: &lt;descriptive string&gt;(default: &apos;Line segment&apos;)</code> - the label key should be given a descriptive string. This string will be used to label the selection button in the javascript
+front-end tool.</li>
+<li><code>&apos;color&apos;: &lt;a color string&gt;(default: &apos;dimgray&apos;)</code> - the color key should be give a color string that
+javascript recognizes. A listing of color names can be found <a href="http://www.w3schools.com/colors/colors_names.asp" _target="blank">here</a>.</li>
+<li><code>&apos;dashStyle&apos;: &lt;line dash string&gt;(default: &apos;solid&apos;)</code> - the dashStyle key should have a string
+description of the dash style to used for drawing the line. Possible values: &apos;dashed&apos;, &apos;longdashed&apos;, &apos;dotted&apos;, &apos;dashdotted&apos;, &apos;solid&apos;.</li>
+<li><code>&apos;directionConstraint&apos;: &lt;a constraint string&gt;</code> - the directionConstraint key should be a string describing the constraint. Possible values: &apos;horizontal&apos;, &apos;vertical&apos;.</li>
+<li><code>&apos;lengthConstraint&apos;: &lt;int&gt;</code> - the lengthConstraint key must be given an integer value. It sets the
+maximum pixel length of the line segment drawn by the plugin.</li>
+<li><code>&apos;arrowHead&apos;: &lt;object&gt;</code> - the arrowHead key must be an object containing the following keys:<ul>
 <li><code>&apos;length&apos;: &lt;int&gt;</code> - the length key must be given an integer value. It sets the length of the arrow head of the line segment drawn by the plugin.</li>
 <li><code>&apos;base&apos;: &lt;int&gt;</code> - the base key must be given an integer value. It sets the base width of the arrow head of the line segment drawn by the plugin.</li>
 </ul>
@@ -542,29 +612,30 @@ maximum pixel length of the line segment drawn by the plugin.</p>
 <li><code>&apos;position&apos;: &lt;string&gt;</code> - a string defining where to draw the tag along the length of the line segment. May be &apos;start&apos;|&apos;middle&apos;|&apos;end&apos;.</li>
 </ul>
 </li>
-<li><code>&apos;readonly&apos;: &lt;True|False&gt;</code> - if True marks the plugin as readonly and not available in the toolbar and any data in the initialstate from this plugin is drawn to the canvas in a non-editable form.</li>
+<li><code>&apos;readonly&apos;: &lt;True|False&gt;(default: False)</code> - if True marks the plugin as readonly and not available in the toolbar and any data in the initialstate from this plugin is drawn to the canvas in a non-editable form.</li>
 </ul>
 <p>E.g.</p>
 <pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;line-segment&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;ls&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Line segment&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;gray&apos;</span>, <span class="hljs-string">&apos;dashStyle&apos;</span>: <span class="hljs-string">&apos;solid&apos;</span>, <span class="hljs-string">&apos;directionConstraint&apos;</span>: <span class="hljs-string">&apos;horizontal&apos;</span>, <span class="hljs-string">&apos;lengthContraint&apos;</span>: <span class="hljs-number">50</span>, <span class="hljs-string">&apos;arrowHead&apos;</span>: {<span class="hljs-string">&apos;length&apos;</span>: <span class="hljs-number">10</span>, <span class="hljs-string">&apos;base&apos;</span>: <span class="hljs-number">7</span>}, <span class="hljs-string">&apos;tag&apos;</span>: {<span class="hljs-string">&apos;value&apos;</span>: <span class="hljs-string">&apos;tag&apos;</span>, <span class="hljs-string">&apos;xoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;yoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;align&apos;</span>: <span class="hljs-string">&apos;start&apos;</span>, <span class="hljs-string">&apos;position&apos;</span>: <span class="hljs-string">&apos;end&apos;</span>}}
 </code></pre>
-<p><div id="vert-line"></div></p>
-<h2 id="vertical-asymptote">Vertical Asymptote</h2>
-<p>The Vertical Asymptote plugin adds a button to  the tool to draw vertical lines on the
-axes. It has five parameters that must be defined:</p>
+<p><div id="point"></div></p>
+<h2 id="point">Point</h2>
+<p>The Point plugin adds a button to the tool to draw points on the axes. It has two
+parameters that must be defined:</p>
 <ul>
-<li><code>&apos;name&apos;: &apos;vertical-line&apos;</code> - the name key <em>must</em> have the value &apos;vertical-line&apos;</li>
+<li><code>&apos;name&apos;: &apos;point&apos;</code> - the name key <em>must</em> have the string value &apos;point&apos;</li>
 <li><code>&apos;id&apos;: &lt;unique identifier string&gt;</code> - the id key <em>must</em> have a <em>unique</em> value.
 This value is used as the key for the data created by this plugin in the JSON
 string returned to the grader function.</li>
-<li><code>&apos;label&apos;: &lt;descriptive string&gt;</code> - the label key should be given a descriptive string. This string will be used to label the selection button in the javascript
-front-end tool.</li>
-<li><code>&apos;color&apos;: &lt;a color string&gt;</code> - the color key should be give a color string that
-javascript recognizes. A listing of color names can be found <a href="http://www.w3schools.com/colors/colors_names.asp" _target="blank">here</a>.</li>
-<li><code>&apos;dashStyle&apos;: &lt;line dash string&gt;(default: &apos;solid&apos;)</code> - the dashStyle key should have a string
-description of the dash style to used for drawing the line. Possible values: &apos;dashed&apos;, &apos;longdashed&apos;, &apos;dotted&apos;, &apos;dashdotted&apos;, &apos;solid&apos;.</li>
 </ul>
 <p>It also has optional parameters:</p>
 <ul>
+<li><code>&apos;label&apos;: &lt;descriptive string&gt;(default: &apos;Point&apos;)</code> - the label key should be given a descriptive string. This string will be used to label the selection button in the javascript
+front-end tool.</li>
+<li><code>&apos;color&apos;: &lt;a color string&gt;(default: &apos;dimgray</code>) - the color key should be give a color string that
+javascript recognizes. A listing of color names can be found <a href="http://www.w3schools.com/colors/colors_names.asp" _target="blank">here</a>.</li>
+<li><code>&apos;size&apos;: &lt;int&gt;(default: 15)</code> - the size key must be given an integer value. It sets the
+pixel diameter of the point drawn by the plugin.</li>
+<li><code>&apos;hollow&apos;: &lt;True|False&gt;(default: False)</code> - if set to True, the point will be drawn hollow. Default value: False.</li>
 <li><code>&apos;tag&apos;: &lt;object&gt;</code> - the tag key must be an object containing the following keys:<ul>
 <li><code>&apos;value&apos;: &lt;string&gt;</code> - the intial value of the tag when the data is drawn on the canvas.</li>
 <li><code>&apos;xoffset&apos;: &lt;int&gt;</code> - the pixel offset in the x direction.</li>
@@ -572,90 +643,15 @@ description of the dash style to used for drawing the line. Possible values: &ap
 <li><code>&apos;align&apos;: &lt;string&gt;</code> - a string defining the position of the tag from which the offsets are applied. May be &apos;start&apos;|&apos;middle&apos;|&apos;end&apos;.</li>
 </ul>
 </li>
-<li><code>&apos;readonly&apos;: &lt;True|False&gt;</code> - if True marks the plugin as readonly and not available in the toolbar and any data in the initialstate from this plugin is drawn to the canvas in a non-editable form.</li>
+<li><code>&apos;readonly&apos;: &lt;True|False&gt;(default: False)</code> - if True marks the plugin as readonly and not available in the toolbar and any data in the initialstate from this plugin is drawn to the canvas in a non-editable form.</li>
 </ul>
 <p>E.g.</p>
-<pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;vertical-line&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;va&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Vertical asymptote&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;gray&apos;</span>, <span class="hljs-string">&apos;dashStyle&apos;</span>: <span class="hljs-string">&apos;dashdotted&apos;</span>, <span class="hljs-string">&apos;tag&apos;</span>: {<span class="hljs-string">&apos;value&apos;</span>: <span class="hljs-string">&apos;tag&apos;</span>, <span class="hljs-string">&apos;xoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;yoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;align&apos;</span>: <span class="hljs-string">&apos;start&apos;</span>}}
-</code></pre>
-<p><div id="horiz-line"></div></p>
-<h2 id="horizontal-asymptote">Horizontal Asymptote</h2>
-<p>The Horizontal Asymptote plugin adds a button to  the tool to draw horizontal lines on the
-axes. It has five parameters that must be defined:</p>
-<ul>
-<li><code>&apos;name&apos;: &apos;horizontal-line&apos;</code> - the name key <em>must</em> have the value
-&apos;horizontal-line&apos;</li>
-<li><code>&apos;id&apos;: &lt;unique identifier string&gt;</code> - the id key <em>must</em> have a <em>unique</em> value.
-This value is used as the key for the data created by this plugin in the JSON
-string returned to the grader function.</li>
-<li><code>&apos;label&apos;: &lt;descriptive string&gt;</code> - the label key should be given a descriptive string. This string will be used to label the selection button in the javascript
-front-end tool.</li>
-<li><code>&apos;color&apos;: &lt;a color string&gt;</code> - the color key should be give a color string that
-javascript recognizes. A listing of color names can be found <a href="http://www.w3schools.com/colors/colors_names.asp" _target="blank">here</a>.</li>
-<li><code>&apos;dashStyle&apos;: &lt;line dash string&gt;(default: &apos;solid&apos;)</code> - the dashStyle key should have a string
-description of the dash style to used for drawing the line. Possible values: &apos;dashed&apos;, &apos;longdashed&apos;, &apos;dotted&apos;, &apos;dashdotted&apos;, &apos;solid&apos;.</li>
-</ul>
-<p>It also has optional parameters:</p>
-<ul>
-<li><code>&apos;tag&apos;: &lt;object&gt;</code> - the tag key must be an object containing the following keys:<ul>
-<li><code>&apos;value&apos;: &lt;string&gt;</code> - the intial value of the tag when the data is drawn on the canvas.</li>
-<li><code>&apos;xoffset&apos;: &lt;int&gt;</code> - the pixel offset in the x direction.</li>
-<li><code>&apos;yoffset&apos;: &lt;int&gt;</code> - the pixel offset in the y direction.</li>
-<li><code>&apos;align&apos;: &lt;string&gt;</code> - a string defining the position of the tag from which the offsets are applied. May be &apos;start&apos;|&apos;middle&apos;|&apos;end&apos;.</li>
-</ul>
-</li>
-<li><code>&apos;readonly&apos;: &lt;True|False&gt;</code> - if True marks the plugin as readonly and not available in the toolbar and any data in the initialstate from this plugin is drawn to the canvas in a non-editable form.</li>
-</ul>
-<p>E.g.</p>
-<pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;horizontal-line&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;ha&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Horizontal asymptote&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;gray&apos;</span>, <span class="hljs-string">&apos;dashStyle&apos;</span>: <span class="hljs-string">&apos;dashdotted&apos;</span>, <span class="hljs-string">&apos;tag&apos;</span>: {<span class="hljs-string">&apos;value&apos;</span>: <span class="hljs-string">&apos;tag&apos;</span>, <span class="hljs-string">&apos;xoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;yoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;align&apos;</span>: <span class="hljs-string">&apos;start&apos;</span>}}
-</code></pre>
-<p><div id="image"></div></p>
-<h2 id="image">Image</h2>
-<p>Adds an image to the drawing canvas.</p>
-<ul>
-<li><code>&apos;name&apos;: &apos;image&apos;</code> - the name key <em>must</em> have the value &apos;image&apos;</li>
-<li><code>&apos;scale&apos;: &lt;number&gt;(default: 1)</code> - multiplier to scale the size of the image.</li>
-<li><code>&apos;align&apos;: &lt;alignment string&gt;(default: &apos;&apos;)</code> - possible values, &apos;top&apos;, &apos;left&apos;, &apos;bottom&apos;, &apos;right&apos;, &apos;&apos;.</li>
-<li><code>&apos;offset&apos;: [&lt;number&gt;,&lt;number&gt;]</code> - array of x, y offsets (default value[0, 0]).</li>
-<li><code>&apos;src&apos;: &lt;path to image file&gt;</code> - the path to the image file to insert.</li>
-</ul>
-<p>E.g.</p>
-<pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;image&apos;</span>, <span class="hljs-string">&apos;align&apos;</span>: <span class="hljs-string">&apos;bottom&apos;</span>, <span class="hljs-string">&apos;src&apos;</span>: <span class="hljs-string">&apos;/static/image.png&apos;</span>}
-</code></pre>
-<p><div id="stamp"></div></p>
-<h2 id="stamp">Stamp</h2>
-<p>The Stamp plugin adds a button to the tool to draw a custom image to the canvas that can be positioned like a Point.</p>
-<ul>
-<li><code>&apos;name&apos;: &apos;stamp&apos;</code> - the name key <em>must</em> have the value &apos;stamp&apos;</li>
-<li><code>&apos;id&apos;: &lt;unique identifier string&gt;</code> - the id key <em>must</em> have a <em>unique</em> value.
-This value is used as the key for the data created by this plugin in the JSON
-string returned to the grader function.</li>
-<li><code>&apos;label&apos;: &lt;descriptive string&gt;</code> - the label key should be given a descriptive string. This string will be used to label the selection button in the javascript
-front-end tool.</li>
-<li><code>&apos;color&apos;: &lt;a color string&gt;</code> - the color key should be give a color string that
-javascript recognizes. A listing of color names can be found <a href="http://www.w3schools.com/colors/colors_names.asp" _target="blank">here</a>.</li>
-<li><code>&apos;scale&apos;: &lt;number&gt;(default: 1)</code> - multiplier to scale the size of the image.</li>
-<li><code>&apos;width&apos;: &lt;number&gt;(default: &apos;100&apos;)</code> - the pixel width of the image.</li>
-<li><code>&apos;height&apos;: &lt;number&gt;(default: &apos;100&apos;)</code> - the pixel height of the image.</li>
-<li><code>&apos;src&apos;: &lt;path to image file&gt;</code> - the path to the image file to insert.</li>
-</ul>
-<p>It also has optional parameters:</p>
-<ul>
-<li><code>&apos;tag&apos;: &lt;object&gt;</code> - the tag key must be an object containing the following keys:<ul>
-<li><code>&apos;value&apos;: &lt;string&gt;</code> - the intial value of the tag when the data is drawn on the canvas.</li>
-<li><code>&apos;xoffset&apos;: &lt;int&gt;</code> - the pixel offset in the x direction.</li>
-<li><code>&apos;yoffset&apos;: &lt;int&gt;</code> - the pixel offset in the y direction.</li>
-<li><code>&apos;align&apos;: &lt;string&gt;</code> - a string defining the position of the tag from which the offsets are applied. May be &apos;start&apos;|&apos;middle&apos;|&apos;end&apos;.</li>
-</ul>
-</li>
-<li><code>&apos;readonly&apos;: &lt;True|False&gt;</code> - if True marks the plugin as readonly and not available in the toolbar and any data in the initialstate from this plugin is drawn to the canvas in a non-editable form.</li>
-</ul>
-<p>E.g.</p>
-<pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;stamp&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;st&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Stamp&apos;</span>, <span class="hljs-string">&apos;src&apos;</span>: <span class="hljs-string">&apos;/static/image.png&apos;</span>, <span class="hljs-string">&apos;tag&apos;</span>: {<span class="hljs-string">&apos;value&apos;</span>: <span class="hljs-string">&apos;tag&apos;</span>, <span class="hljs-string">&apos;xoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;yoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;align&apos;</span>: <span class="hljs-string">&apos;start&apos;</span>}}
+<pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;point&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;cp&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Extremum&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;black&apos;</span>, <span class="hljs-string">&apos;size&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;hollow&apos;</span>: <span class="hljs-keyword">True</span>, <span class="hljs-string">&apos;tag&apos;</span>: {<span class="hljs-string">&apos;value&apos;</span>: <span class="hljs-string">&apos;tag&apos;</span>, <span class="hljs-string">&apos;xoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;yoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;align&apos;</span>: <span class="hljs-string">&apos;start&apos;</span>}}
 </code></pre>
 <p><div id="polyline"></div></p>
 <h2 id="polylinepolygon">PolyLine/Polygon</h2>
 <p>The PolyLine plugin adds a button to the tool to draw a PolyLine or Polygon by
-placing the points that define its component line segments. It has seven
+placing the points that define its component line segments. It has two
 parameters that must be defined:</p>
 <ul>
 <li><code>&apos;name&apos;: &apos;polyline&apos;</code> - the name key <em>must</em> have the value
@@ -663,17 +659,18 @@ parameters that must be defined:</p>
 <li><code>&apos;id&apos;: &lt;unique identifier string&gt;</code> - the id key <em>must</em> have a <em>unique</em> value.
 This value is used as the key for the data created by this plugin in the JSON
 string returned to the grader function.</li>
-<li><code>&apos;label&apos;: &lt;descriptive string&gt;</code> - the label key should be given a descriptive string. This string will be used to label the selection button in the javascript
-front-end tool.</li>
-<li><code>&apos;closed&apos;: &lt;True|False&gt;</code> - True if you want a polygon, False if you want a polyline.</li>
-<li><code>&apos;color&apos;: &lt;a color string&gt;</code> - the color key should be give a color string that
-javascript recognizes. A listing of color names can be found <a href="http://www.w3schools.com/colors/colors_names.asp" _target="blank">here</a>.</li>
-<li><code>&apos;fillColor&apos;: &lt;a color string&gt;</code> - the fillColor is used if the &apos;closed&apos; parameter is set to True.</li>
-<li><code>&apos;dashStyle&apos;: &lt;line dash string&gt;(default: &apos;solid&apos;)</code> - the dashStyle key should have a string
-description of the dash style to used for drawing the line. Possible values: &apos;dashed&apos;, &apos;longdashed&apos;, &apos;dotted&apos;, &apos;dashdotted&apos;, &apos;solid&apos;.</li>
 </ul>
 <p>It also has optional parameters:</p>
 <ul>
+<li><code>&apos;label&apos;: &lt;descriptive string&gt;(default: &apos;Polyline&apos;)</code> - the label key should be given a descriptive string. This string will be used to label the selection button in the javascript
+front-end tool.</li>
+<li><code>&apos;color&apos;: &lt;a color string&gt;(default: &apos;dimgray&apos;)</code> - the color key should be give a color string that
+javascript recognizes. A listing of color names can be found <a href="http://www.w3schools.com/colors/colors_names.asp" _target="blank">here</a>.</li>
+<li><code>&apos;dashStyle&apos;: &lt;line dash string&gt;(default: &apos;solid&apos;)</code> - the dashStyle key should have a string
+description of the dash style to used for drawing the line. Possible values: &apos;dashed&apos;, &apos;longdashed&apos;, &apos;dotted&apos;, &apos;dashdotted&apos;, &apos;solid&apos;.</li>
+<li><code>&apos;closed&apos;: &lt;True|False&gt;(default: False)</code> - True if you want a polygon, False if you want a polyline.</li>
+<li><code>&apos;fillColor&apos;: &lt;a color string&gt;(default: &apos;none&apos;)</code> - the fillColor is used if the &apos;closed&apos; parameter is set to True.</li>
+<li><code>&apos;opacity&apos;: &lt;a color string&gt;(default: 1)</code> - sets the opacity of the polyline. Range is from 0 (invisible) to 1 (opaque).</li>
 <li><code>&apos;tag&apos;: &lt;object&gt;</code> - the tag key must be an object containing the following keys:<ul>
 <li><code>&apos;value&apos;: &lt;string&gt;</code> - the intial value of the tag when the data is drawn on the canvas.</li>
 <li><code>&apos;xoffset&apos;: &lt;int&gt;</code> - the pixel offset in the x direction.</li>
@@ -681,10 +678,97 @@ description of the dash style to used for drawing the line. Possible values: &ap
 <li><code>&apos;align&apos;: &lt;string&gt;</code> - a string defining the position of the tag from which the offsets are applied. May be &apos;start&apos;|&apos;middle&apos;|&apos;end&apos;.</li>
 </ul>
 </li>
-<li><code>&apos;readonly&apos;: &lt;True|False&gt;</code> - if True marks the plugin as readonly and not available in the toolbar and any data in the initialstate from this plugin is drawn to the canvas in a non-editable form.</li>
+<li><code>&apos;readonly&apos;: &lt;True|False&gt;(default: False)</code> - if True marks the plugin as readonly and not available in the toolbar and any data in the initialstate from this plugin is drawn to the canvas in a non-editable form.</li>
 </ul>
 <p>E.g.</p>
 <pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;polyline&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;pl&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;PolyLine&apos;</span>, <span class="hljs-string">&apos;closed&apos;</span>: <span class="hljs-keyword">True</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;gray&apos;</span>, <span class="hljs-string">&apos;fillColor&apos;</span>: <span class="hljs-string">&apos;lightblue&apos;</span>, <span class="hljs-string">&apos;dashStyle&apos;</span>: <span class="hljs-string">&apos;dashdotted&apos;</span>, <span class="hljs-string">&apos;tag&apos;</span>: {<span class="hljs-string">&apos;value&apos;</span>: <span class="hljs-string">&apos;tag&apos;</span>, <span class="hljs-string">&apos;xoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;yoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;align&apos;</span>: <span class="hljs-string">&apos;start&apos;</span>}}
+</code></pre>
+<p><div id="spline"></div></p>
+<h2 id="spline">Spline</h2>
+<p>The Spline plugin adds a button to the tool to draw a sequence of points between which a spline is interpolated. It has two parameters that must be defined:</p>
+<ul>
+<li><code>&apos;name&apos;: &apos;freeform&apos;</code> - the name key <em>must</em> have the value &apos;freeform&apos;</li>
+<li><code>&apos;id&apos;: &lt;unique identifier string&gt;</code> - the id key <em>must</em> have a <em>unique</em> value.
+This value is used as the key for the data created by this plugin in the JSON
+string returned to the grader function.</li>
+</ul>
+<p>It also has optional parameters:</p>
+<ul>
+<li><code>&apos;label&apos;: &lt;descriptive string&gt;(default &apos;Spline&apos;)</code> - the label key should be given a descriptive string. This string will be used to label the selection button in the javascript
+front-end tool.</li>
+<li><code>&apos;color&apos;: &lt;a color string&gt;(default: &apos;dimgray&apos;)</code> - the color key should be give a color string that
+javascript recognizes. A listing of color names can be found <a href="http://www.w3schools.com/colors/colors_names.asp" _target="blank">here</a>.</li>
+<li><code>&apos;tag&apos;: &lt;object&gt;</code> - the tag key must be an object containing the following keys:<ul>
+<li><code>&apos;value&apos;: &lt;string&gt;</code> - the intial value of the tag when the data is drawn on the canvas.</li>
+<li><code>&apos;xoffset&apos;: &lt;int&gt;</code> - the pixel offset in the x direction.</li>
+<li><code>&apos;yoffset&apos;: &lt;int&gt;</code> - the pixel offset in the y direction.</li>
+<li><code>&apos;align&apos;: &lt;string&gt;</code> - a string defining the position of the tag from which the offsets are applied. May be &apos;start&apos;|&apos;middle&apos;|&apos;end&apos;.</li>
+</ul>
+</li>
+<li><code>&apos;readonly&apos;: &lt;True|False&gt;(default: False)</code> - if True marks the plugin as readonly and not available in the toolbar and any data in the initialstate from this plugin is drawn to the canvas in a non-editable form.</li>
+</ul>
+<p>E.g.</p>
+<pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;spline&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;spl&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Function f(x)&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>:<span class="hljs-string">&apos;royalblue&apos;</span>, <span class="hljs-string">&apos;tag&apos;</span>: {<span class="hljs-string">&apos;value&apos;</span>: <span class="hljs-string">&apos;tag&apos;</span>, <span class="hljs-string">&apos;xoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;yoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;align&apos;</span>: <span class="hljs-string">&apos;start&apos;</span>}}
+</code></pre>
+<p><div id="stamp"></div></p>
+<h2 id="stamp">Stamp</h2>
+<p>The Stamp plugin adds a button to the tool to draw a custom image to the canvas that can be positioned like a Point. It has two parameters that must be defined:</p>
+<ul>
+<li><code>&apos;name&apos;: &apos;stamp&apos;</code> - the name key <em>must</em> have the value &apos;stamp&apos;</li>
+<li><code>&apos;id&apos;: &lt;unique identifier string&gt;</code> - the id key <em>must</em> have a <em>unique</em> value.
+This value is used as the key for the data created by this plugin in the JSON
+string returned to the grader function.</li>
+</ul>
+<p>It also has optional parameters:</p>
+<ul>
+<li><code>&apos;label&apos;: &lt;descriptive string&gt;(default: &apos;Stamp&apos;)</code> - the label key should be given a descriptive string. This string will be used to label the selection button in the javascript
+front-end tool.</li>
+<li><code>&apos;scale&apos;: &lt;number&gt;(default: 1)</code> - multiplier to scale the size of the image.</li>
+<li><code>&apos;imgwidth&apos;: &lt;number&gt;(default: &apos;100&apos;)</code> - the pixel width of the image.</li>
+<li><code>&apos;imgheight&apos;: &lt;number&gt;(default: &apos;100&apos;)</code> - the pixel height of the image.</li>
+<li><code>&apos;iconSrc&apos;: &lt;path to image file&gt;</code> - the path to the toolbar icon.</li>
+<li><code>&apos;src&apos;: &lt;path to image file&gt;</code> - the path to the image file to insert.</li>
+<li><code>&apos;tag&apos;: &lt;object&gt;</code> - the tag key must be an object containing the following keys:<ul>
+<li><code>&apos;value&apos;: &lt;string&gt;</code> - the intial value of the tag when the data is drawn on the canvas.</li>
+<li><code>&apos;xoffset&apos;: &lt;int&gt;</code> - the pixel offset in the x direction.</li>
+<li><code>&apos;yoffset&apos;: &lt;int&gt;</code> - the pixel offset in the y direction.</li>
+<li><code>&apos;align&apos;: &lt;string&gt;</code> - a string defining the position of the tag from which the offsets are applied. May be &apos;start&apos;|&apos;middle&apos;|&apos;end&apos;.</li>
+</ul>
+</li>
+<li><code>&apos;readonly&apos;: &lt;True|False&gt;(default: False)</code> - if True marks the plugin as readonly and not available in the toolbar and any data in the initialstate from this plugin is drawn to the canvas in a non-editable form.</li>
+</ul>
+<p>E.g.</p>
+<pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;stamp&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;st&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Stamp&apos;</span>, <span class="hljs-string">&apos;src&apos;</span>: <span class="hljs-string">&apos;/static/image.png&apos;</span>, <span class="hljs-string">&apos;tag&apos;</span>: {<span class="hljs-string">&apos;value&apos;</span>: <span class="hljs-string">&apos;tag&apos;</span>, <span class="hljs-string">&apos;xoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;yoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;align&apos;</span>: <span class="hljs-string">&apos;start&apos;</span>}}
+</code></pre>
+<p><div id="vert-line"></div></p>
+<h2 id="vertical-line">Vertical Line</h2>
+<p>The Vertical Line plugin adds a button to  the tool to draw vertical lines on the
+axes. It has two parameters that must be defined:</p>
+<ul>
+<li><code>&apos;name&apos;: &apos;vertical-line&apos;</code> - the name key <em>must</em> have the value &apos;vertical-line&apos;</li>
+<li><code>&apos;id&apos;: &lt;unique identifier string&gt;</code> - the id key <em>must</em> have a <em>unique</em> value.
+This value is used as the key for the data created by this plugin in the JSON
+string returned to the grader function.</li>
+</ul>
+<p>It also has optional parameters:</p>
+<ul>
+<li><code>&apos;label&apos;: &lt;descriptive string&gt;(Default: &apos;Vertical line&apos;)</code> - the label key should be given a descriptive string. This string will be used to label the selection button in the javascript
+front-end tool.</li>
+<li><code>&apos;color&apos;: &lt;a color string&gt;(default: &apos;dimgray&apos;)</code> - the color key should be give a color string that
+javascript recognizes. A listing of color names can be found <a href="http://www.w3schools.com/colors/colors_names.asp" _target="blank">here</a>.</li>
+<li><code>&apos;dashStyle&apos;: &lt;line dash string&gt;(default: &apos;solid&apos;)</code> - the dashStyle key should have a string
+description of the dash style to used for drawing the line. Possible values: &apos;dashed&apos;, &apos;longdashed&apos;, &apos;dotted&apos;, &apos;dashdotted&apos;, &apos;solid&apos;.</li>
+<li><code>&apos;tag&apos;: &lt;object&gt;</code> - the tag key must be an object containing the following keys:<ul>
+<li><code>&apos;value&apos;: &lt;string&gt;</code> - the intial value of the tag when the data is drawn on the canvas.</li>
+<li><code>&apos;xoffset&apos;: &lt;int&gt;</code> - the pixel offset in the x direction.</li>
+<li><code>&apos;yoffset&apos;: &lt;int&gt;</code> - the pixel offset in the y direction.</li>
+<li><code>&apos;align&apos;: &lt;string&gt;</code> - a string defining the position of the tag from which the offsets are applied. May be &apos;start&apos;|&apos;middle&apos;|&apos;end&apos;.</li>
+</ul>
+</li>
+<li><code>&apos;readonly&apos;: &lt;True|False&gt;(default: False)</code> - if True marks the plugin as readonly and not available in the toolbar and any data in the initialstate from this plugin is drawn to the canvas in a non-editable form.</li>
+</ul>
+<p>E.g.</p>
+<pre><code class="lang-python">{<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;vertical-line&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;va&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Vertical asymptote&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>: <span class="hljs-string">&apos;gray&apos;</span>, <span class="hljs-string">&apos;dashStyle&apos;</span>: <span class="hljs-string">&apos;dashdotted&apos;</span>, <span class="hljs-string">&apos;tag&apos;</span>: {<span class="hljs-string">&apos;value&apos;</span>: <span class="hljs-string">&apos;tag&apos;</span>, <span class="hljs-string">&apos;xoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;yoffset&apos;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&apos;align&apos;</span>: <span class="hljs-string">&apos;start&apos;</span>}}
 </code></pre>
 <p><div id="initialstate"></div></p>
 <h2 id="initial-state">Initial State</h2>
@@ -747,7 +831,7 @@ The initial state configuration below uses a point plugin with id &apos;pt&apos;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Sketch Tool Configuration Reference","level":"1.5","depth":1,"next":{"title":"Grader Library API Reference","level":"1.6","depth":1,"path":"api/README.md","ref":"api/README.md","articles":[]},"previous":{"title":"edX","level":"1.4.1","depth":2,"path":"edx_quickstart.md","ref":"edx_quickstart.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"probconfig_plugins.md","mtime":"2017-06-09T19:30:30.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2017-06-09T19:39:59.993Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Sketch Tool Configuration Reference","level":"1.5","depth":1,"next":{"title":"Grader Library API Reference","level":"1.6","depth":1,"path":"api/README.md","ref":"api/README.md","articles":[]},"previous":{"title":"edX","level":"1.4.1","depth":2,"path":"edx_quickstart.md","ref":"edx_quickstart.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"probconfig_plugins.md","mtime":"2017-07-17T20:57:50.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2017-07-26T17:03:29.205Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
