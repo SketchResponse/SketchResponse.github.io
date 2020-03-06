@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>A simple grading script · SketchResponse</title>
+        <title>A line segment grading script · SketchResponse</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="complex_grader.html" />
+    <link rel="next" href="local_test.html" />
     
     
-    <link rel="prev" href="template.html" />
+    <link rel="prev" href="polar_grader.html" />
     
 
     </head>
@@ -142,7 +142,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3.2" data-path="simple_grader.html">
+        <li class="chapter " data-level="1.3.2" data-path="simple_grader.html">
             
                 <a href="simple_grader.html">
             
@@ -207,7 +207,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.7" data-path="linesegment_grader.html">
+        <li class="chapter active" data-level="1.3.7" data-path="linesegment_grader.html">
             
                 <a href="linesegment_grader.html">
             
@@ -352,7 +352,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >A simple grading script</a>
+        <a href="." >A line segment grading script</a>
     </h1>
 </div>
 
@@ -369,15 +369,17 @@
                                 
                                 <h1 id="a-simple-grader-script">A simple grader script</h1>
 <p>This document will walk through the implementation of a grader script for
-a simple problem. All this grader will do is test whether the input function
-is of a straight line.</p>
+a line segment problem. Unlike other input types, Line Segements can be graded
+as a spline like any other freeform drawn input, or with the <code>LineSegment</code> module,
+which provides API functions for interacting with end points among other things.</p>
 <p>Each grader script at its base is composed of two components</p>
 <pre><code> 1. The problem configuration
  2. The grader function
 </code></pre><h2 id="imports">Imports</h2>
-<p>There are two SketchResponse python modules that must be imported for this simple example. All grader scripts must import the <code>sketchresponse</code> module. There are two other modules that provide different grading helper functions. In this case, we only need to input the <code>GradeableFunction</code> module from <code>grader_lib</code>.</p>
+<p>There are three SketchResponse python modules that must be imported for this simple example. All grader scripts must import the <code>sketchresponse</code> module. There are two other modules that provide different grading helper functions. In this case, we only need to input the <code>GradeableFunction</code> and the <code>LineSegment</code> modules from <code>grader_lib</code>.</p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> sketchresponse <span class="hljs-keyword">import</span> sketchresponse
 <span class="hljs-keyword">from</span> sketchresponse.grader_lib <span class="hljs-keyword">import</span> GradeableFunction
+<span class="hljs-keyword">from</span> sketchresponse.grader_lib <span class="hljs-keyword">import</span> LineSegment
 </code></pre>
 <h2 id="problem-configuration">Problem configuration</h2>
 <p>The problem configuration is passed to the javascript front end to define the
@@ -404,54 +406,69 @@ configuration options.</p>
 </ul>
 <p>A listing of all the built-in plugins can be found at <a href="probconfig_plugins.html">SketchResponse Plugins</a>.</p>
 <pre><code class="lang-python">problemconfig = sketchresponse.config({
-    <span class="hljs-string">&apos;width&apos;</span>: <span class="hljs-number">750</span>,
+    <span class="hljs-string">&apos;width&apos;</span>: <span class="hljs-number">420</span>,
     <span class="hljs-string">&apos;height&apos;</span>: <span class="hljs-number">420</span>,
-    <span class="hljs-string">&apos;xrange&apos;</span>: [<span class="hljs-number">-2.35</span>, <span class="hljs-number">2.35</span>],
-    <span class="hljs-string">&apos;yrange&apos;</span>: [<span class="hljs-number">-1.15</span>, <span class="hljs-number">1.15</span>],
+    <span class="hljs-string">&apos;xrange&apos;</span>: [<span class="hljs-number">-4</span>, <span class="hljs-number">4</span>],
+    <span class="hljs-string">&apos;yrange&apos;</span>: [<span class="hljs-number">-4</span>, <span class="hljs-number">4</span>],
     <span class="hljs-string">&apos;xscale&apos;</span>: <span class="hljs-string">&apos;linear&apos;</span>,
     <span class="hljs-string">&apos;yscale&apos;</span>: <span class="hljs-string">&apos;linear&apos;</span>,
     <span class="hljs-string">&apos;coordinates&apos;</span>: <span class="hljs-string">&apos;cartesian&apos;</span>,
     <span class="hljs-string">&apos;plugins&apos;</span>: [
         {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;axes&apos;</span>},
-        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;freeform&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;f&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Function f(x)&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>:<span class="hljs-string">&apos;blue&apos;</span>},
+        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;line-segment&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;ls1&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Line Segment 1&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>:<span class="hljs-string">&apos;blue&apos;</span>},
+        {<span class="hljs-string">&apos;name&apos;</span>: <span class="hljs-string">&apos;line-segment&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>: <span class="hljs-string">&apos;ls2&apos;</span>, <span class="hljs-string">&apos;label&apos;</span>: <span class="hljs-string">&apos;Line Segment 2&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>:<span class="hljs-string">&apos;green&apos;</span>},
     ]
 })
 </code></pre>
 <p>The above problem configuration settings will create a javascript tool that looks something like the image below.</p>
-<p><img src="imgs/simple_config.png" alt="What the user will see" title="Simple Config"></p>
+<p><img src="imgs/linesegment_config.png" alt="What the user will see" title="Line Segment Config"></p>
 <h2 id="define-the-grader-callback-function">Define the grader callback function</h2>
 <div id="grader"></div>
 
 <pre><code class="lang-python"><span class="hljs-meta">@sketchresponse.grader</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">grader</span><span class="hljs-params">(f)</span>:</span>
-    gf = GradeableFunction.GradeableFunction(f)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">grader</span><span class="hljs-params">(ls1, ls2)</span>:</span>
 
-    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> gf.is_straight():
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>, <span class="hljs-string">&apos;Not straight&apos;</span>
+    gls = GradeableFunction.GradeableFunction(ls1)
 
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">True</span>, <span class="hljs-string">&apos;Good Job&apos;</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> gls.is_straight():
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>, <span class="hljs-string">&quot;not straight&quot;</span>
+
+
+    ls = LineSegment.LineSegments(ls2)
+
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> ls.get_number_of_segments() == <span class="hljs-number">1</span>:
+       <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>, <span class="hljs-string">&quot;ls2 doesn&apos;t have 1 segment&quot;</span>
+
+    segment = ls.segments[<span class="hljs-number">0</span>]
+
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> ls.check_segment_startpoint(segment, (<span class="hljs-number">-2</span>,<span class="hljs-number">-2</span>)) <span class="hljs-keyword">or</span> <span class="hljs-keyword">not</span> ls.check_segment_endpoint(segment, (<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)):
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>, <span class="hljs-string">&quot;start and/or end point is wrong&quot;</span>
+
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> ls.has_slope_m_at_x(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, ignoreDirection=<span class="hljs-keyword">True</span>):
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>, <span class="hljs-string">&quot;slopes are wrong&quot;</span>
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">True</span>, <span class="hljs-string">&quot;Works&quot;</span>
 </code></pre>
 <p>The grader callback function implements the function passed to the sketchinput
 grader to evaluate the data sent from the javascript tool.</p>
 <p>The arguments of the grader function are the <code>&apos;id&apos;</code> values as defined in the
-problem configuration above. E.g. in our problem configuration we enabled the
-freeform drawing tool with id &apos;f&apos; and we have a corresponding argument f in
-the signature of the function that will be automatically unpacked.</p>
-<p>Before we can execute any grading helper functions on the data, we must
-instantiate the data as a <code>GradeableFunction</code>.</p>
+problem configuration above. E.g. in our problem configuration we enabled two
+line segment drawing tools with ids &apos;ls1&apos; and &apos;ls2&apos; and we have a corresponding arguments
+ls1 and ls2 in the function signature that will be automatically unpacked.</p>
+<p>There are two different ways to evaluate the input data. We can either use the <code>GradeableFunction</code> module similar to any freeform spline function. Alternatively, we can use the <code>LineSegment</code> module, which contains a small collection of helper functions that assume the input is specifically a line segment defined by only two points.</p>
+<p>First we use <code>GradeableFunction</code> to evaluate the ls1 input data.</p>
 <p>In this simple example all we are checking is that the submitted function
-defines a straight line over its entire domain. We are not checking for slope
-of the line. To do this we call the grader helper function <code>gf.is_straight()</code>.
-<code>is_straight()</code> returns a boolean value. The full API documentation for the
-grader helper functions can be found at <a href="https://SketchResponse.github.io/sketchresponse" _target="blank">SketchResponse API</a>.</p>
-<p>And that&apos;s it! Those two simple blocks of code complete our first grader script.
-Admittedly this particular script doesn&apos;t do much. Check out the <a href="complex_grader.html">Complex Grader</a> example for a more realistic grader tutorial on an
-example math problem.</p>
+defines a straight line over its entire domain. However, any <code>GradeableFunction</code> grader
+functions can be called on this data since it is represented internally as a spline.
+The full API documentation for the grader helper functions can be found at <a href="https://SketchResponse.github.io/sketchresponse" _target="blank">SketchResponse API</a>.</p>
+<p>Second, we use the <code>LineSegment</code> module to evaluate the ls2 input data.</p>
+<p>In this example, we check that there is a single line segment drawn using the <code>get_number_of_segments</code> function. Then we check that the start and end points of that line segment are in expected locations with the <code>check_segment_startpoint</code> and <code>check_segment_endpoint</code> functions. Finally we check the slope use the <code>has_slope_m_at_x</code> function. Note: the slope function for line segments has an optional parameter <code>ignoreDirection</code> that can be set to true if you don&apos;t care which endpoint is the first drawn.</p>
+<p>And that&apos;s it! Those two simple blocks of code complete our line segment grader script.</p>
 <h2 id="testing-the-script">Testing the script</h2>
 <p>Once the script is written, you can run the script in the local testing server. See the <a href="local_test.html">Test a Grading Script on a Local Server</a> tutorial for details on installing and running the testing server.</p>
 <p>There is already a copy of this grader script in the <code>grader_scripts</code> directory so all you need to do is start the server and point your browser of choice at the url:</p>
-<pre><code>http://localhost:5000/simple_grader
-</code></pre><p>You should see the configured Sketch Tool. If you draw a straight(ish) line and press the check button you will get accept message. If the line is not straight enough, you will get a reject message.</p>
+<pre><code>http://localhost:5000/linesegment_grader
+</code></pre><p>You should see the configured Sketch Tool. If you draw a any line segment(s) with the blue line segment tool and a single line segment with the green line segment tool from [-2, -2] to [2, 2] it will pass. </p>
 
                                 
                                 </section>
@@ -479,12 +496,12 @@ example math problem.</p>
 
             
                 
-                <a href="template.html" class="navigation navigation-prev " aria-label="Previous page: A grading script template">
+                <a href="polar_grader.html" class="navigation navigation-prev " aria-label="Previous page: A polar coordinates grading script">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="complex_grader.html" class="navigation navigation-next " aria-label="Next page: A complex grading script">
+                <a href="local_test.html" class="navigation navigation-next " aria-label="Next page: Testing your script">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -495,7 +512,7 @@ example math problem.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"A simple grading script","level":"1.3.2","depth":2,"next":{"title":"A complex grading script","level":"1.3.3","depth":2,"path":"complex_grader.md","ref":"complex_grader.md","articles":[]},"previous":{"title":"A grading script template","level":"1.3.1","depth":2,"path":"template.md","ref":"template.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"simple_grader.md","mtime":"2020-03-06T20:09:41.130Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2020-03-06T20:10:55.970Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"A line segment grading script","level":"1.3.7","depth":2,"next":{"title":"Testing your script","level":"1.3.8","depth":2,"path":"local_test.md","ref":"local_test.md","articles":[]},"previous":{"title":"A polar coordinates grading script","level":"1.3.6","depth":2,"path":"polar_grader.md","ref":"polar_grader.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"docs/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SketchResponse","gitbook":"*"},"file":{"path":"linesegment_grader.md","mtime":"2020-03-06T20:09:41.126Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2020-03-06T20:10:55.970Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
